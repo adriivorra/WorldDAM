@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Wordle</title>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/chart.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+    <div id="mensajeFinal"></div>
+    <section id="contenedor">
+        <div id="head">
+            <div id="titulo">
+                <h1>WordleDAM</h1>
+            </div>
+            <button id="estadisticas"><img src="img/grafica.png" id="imagen_grafica"></button> 
+            <button id="inicio"><img src="img/inicio.png" id="imagen_inicio"></button> 
+        </div>
+        <div>
+            <button id="reiniciarEstadisticas">Reiniciar estadísticas</button> 
+        </div>
+        <div id="dificultad">
+            <h3 id="texto">Nivel de dificultad: </h3>
+            <p id="baja" class="botones">Baja</p>
+            <p id="media" class="botones">Media</p>
+            <p id="alta" class="botones">Alta</p>
+        </div>
+        <div id="grafica">
+            <canvas id="grafico" height="300" width="400"></canvas>
+        </div>
+        <div id="mensaje"></div>
+        <div id="casillas">
+            <!--
+            <div id="fila1">
+                <div id="casilla_1_1" class="casilla"></div>
+                <div id="casilla_2_1" class="casilla"></div>
+                <div id="casilla_3_1" class="casilla"></div>
+                <div id="casilla_4_1" class="casilla"></div>
+                <div id="casilla_5_1" class="casilla"></div>
+            </div>                
+            -->
+        </div>
+        <div id="formulario">
+            <div id="inputs">
+                <!-- <input type="text" size="1" maxlength="1" class="casilla letra" id="c1">
+                <input type="text" size="1" maxlength="1" class="casilla letra" id="c2">
+                <input type="text" size="1" maxlength="1" class="casilla letra" id="c3">
+                <input type="text" size="1" maxlength="1" class="casilla letra" id="c4">
+                <input type="text" size="1" maxlength="1" class="casilla letra" id="c5"> -->
+            </div>
+            <div>
+                <button class="casilla" id="enviar">Enviar</button>                
+            </div>
+        </div>
+        <div id="teclado">
+            <div id="primera_linea">
+                <button class="tecla" value="Q">q</button>
+                <button class="tecla" value="W">w</button>
+                <button class="tecla" value="E">e</button>
+                <button class="tecla" value="R">r</button>
+                <button class="tecla" value="T">t</button>
+                <button class="tecla" value="Y">y</button>
+                <button class="tecla" value="U">u</button>
+                <button class="tecla" value="I">i</button>
+                <button class="tecla" value="O">o</button>
+                <button class="tecla" value="P">p</button>
+            </div>
+            <div id="segunda_linea">
+                <button class="tecla" value="A">a</button>
+                <button class="tecla" value="S">s</button>
+                <button class="tecla" value="D">d</button>
+                <button class="tecla" value="F">f</button>
+                <button class="tecla" value="G">g</button>
+                <button class="tecla" value="H">h</button>
+                <button class="tecla" value="J">j</button>
+                <button class="tecla" value="K">k</button>
+                <button class="tecla" value="L">l</button>
+                <button class="tecla" value="Ñ">ñ</button>
+            </div>
+            <div id="tercera_linea">
+                <button class="tecla" id="teclaDelete">Del</button>
+                <button class="tecla" value="Z">z</button>
+                <button class="tecla" value="X">x</button>
+                <button class="tecla" value="C">c</button>
+                <button class="tecla" value="V">v</button>
+                <button class="tecla" value="B">b</button>
+                <button class="tecla" value="N">n</button>
+                <button class="tecla" value="M">m</button>
+                <button class="tecla" id="teclaEnviar">Enter</button>
+            </div>
+        </div>
+        <p id="encontrada"></p>
+        <p id="puntuacion"><strong>Puntuación:</strong> 0 puntos</p>
+    </section>
+</body>
+</html>

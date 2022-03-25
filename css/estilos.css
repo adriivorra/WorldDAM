@@ -1,0 +1,296 @@
+body 
+{
+    color: #000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', Arial, sans-serif;    
+}
+
+#contenedor {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transform: scale(1.0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#titulo
+{
+    text-align: center;
+}
+
+#head{
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns:  auto auto auto;
+}
+
+#titulo{
+    grid-column: 1;
+    position: relative;
+    left: 100px;
+}
+
+#estadisticas{
+    grid-column: 2;
+    margin-left: 150px;
+    background-color: transparent;
+    border-style: none;
+    transition: 0.2s;
+    border-radius: 8px;
+    height: 60px;
+    width: 60px;
+}
+
+#estadisticas:hover{
+    background-color: rgb(204, 204, 204);
+    transition: 0.2s;
+}
+
+
+#imagen_grafica{
+    height: 40px;
+    width: 40px;
+}
+
+#inicio{
+    grid-column: 3;
+    background-color: transparent;
+    margin-left: 150px;
+    border-style: none;
+    transition: 0.2s;
+    border-radius: 8px;
+    height: 60px;
+    width: 60px;
+}
+
+#inicio:hover{
+    background-color: rgb(204, 204, 204);
+    transition: 0.2s;
+}
+
+#imagen_inicio{
+    height: 45px;
+    width: 45px;
+}
+
+#mensaje 
+{
+    height: 30px;
+    text-align: center;
+}
+
+#casillas, #formulario
+{
+    width: 450px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+#casillas div, #formulario div 
+{
+    display: flex;
+    justify-content: center;
+}
+
+.casilla {
+    width: 62px;
+    height: 62px;
+    border: 2px solid#3a3a3c;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    font-size: 2em;
+    border-radius: 7px;
+}
+
+input.casilla
+{
+    text-align: center;
+    border-radius: 7px;
+}
+
+#enviar
+{
+    font-size: px;
+    width: 100px;
+    background-color: black;
+    color: white;
+}
+
+#reiniciarEstadisticas{
+    border-style: none;
+    background-color: rgb(131, 204, 235);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 8px;
+    font-size: 20px;
+    transition: 0.2s;
+    text-align: center;
+}
+
+#reiniciarEstadisticas:hover{
+    background-color: rgb(205, 93, 93);
+    transform: scale(1.02);
+    transition: 0.2s;
+}
+
+#mensajeFinal{
+    z-index: 1;
+
+}
+
+#reintentar{
+    padding: 10px;
+
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    font-size: 20px;
+}
+
+
+
+.botones{
+    border-style: none;
+    background-color: rgb(131, 204, 235);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 8px;
+    font-size: 20px;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.botones:hover{
+    background-color: rgb(205, 93, 93);
+    transform: scale(1.02);
+    transition: 0.2s;
+}
+
+
+.noEncontrada{
+    animation: shake 300ms;
+
+}
+
+.añadirPalabra{
+    animation: rotar 1500ms;
+}
+
+@keyframes rotar {
+    55% {transform: rotateY(180deg);}
+}
+
+
+@keyframes shake {
+    25% {transform: translateX(4px);}
+    50% {transform: translateX(-4px);}
+    75% {transform: translateX(4px);}
+}
+
+
+
+/* .tecla{
+    padding: 7px;
+    margin: 2px;
+} */
+
+#teclado {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #teclado div {
+    display: flex;
+  }
+  
+  #segunda_linea {
+    margin: 3px;
+  }
+  
+  .tecla {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 7px;
+    margin: 0 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+@media(max-width: 576px){
+    #contenedor {
+        margin-top: -200px;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        overflow-y: center;
+        overflow-x: hidden;
+    }
+
+
+
+    /* #dificultad, #casillas, #formualario, #inputs{
+        transform: scale(1.5);
+    }
+
+    #mensaje{
+        margin-bottom: 100px;
+        font-size: 30px;
+    }
+
+    #casillas{
+        margin-top: 60px;
+    }
+
+    #inputs{
+        margin-top: 110px;
+    }
+
+    #enviar{
+        margin-top: 40px;
+        font-size: 30px;
+    } */
+
+    #reintentar, #texto, #titulo, #baja, #media, #alta{
+        font-size: 22px;
+    }
+    /* #titulo{
+        margin: 30px;
+    } */
+
+    #titulo{
+
+        position: relative;
+    }
+    
+    #estadisticas, #inicio{
+        margin-top: 10px;
+        margin-left: 120px;
+    }
+
+    
+
+}
+
+
