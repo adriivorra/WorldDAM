@@ -511,6 +511,7 @@ window.addEventListener("load", function(){
     let perdidas5 = localStorage.getItem('perdidas4');
     let perdidas7 = localStorage.getItem('perdidas4');
 
+    document.getElementById("enviar").style.display = "none";
 
     let puntuacion = document.getElementById("puntuacion");
     puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
