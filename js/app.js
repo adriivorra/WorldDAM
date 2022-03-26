@@ -915,7 +915,6 @@ window.addEventListener("load", function(){
     botonBaja.addEventListener("click", function() {
         document.getElementById("teclado").style.display = "";
        llamarFuncionesBotones(palabras4letras);
-       //prueba();  
     });
 
     // Botón dificulad media
@@ -928,6 +927,7 @@ window.addEventListener("load", function(){
     // Botoón dificultad alta
     let botonAlta = document.getElementById("alta");
     botonAlta.addEventListener("click", function() {
+        document.getElementById("teclado").style.display = "";
         llamarFuncionesBotones(palabras7letras);
     });
 

@@ -34,10 +34,11 @@ body
   }
 
   .tecla{
-    padding: 1.2vh;
+
     flex-basis: 40px;
     cursor: pointer;
     text-transform: uppercase;
+    border-radius: 5px;
   }
 /* 
    #teclado div {
