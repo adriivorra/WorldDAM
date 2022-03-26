@@ -211,22 +211,23 @@ input.casilla
     align-items: center;
   }
   
-  #teclado div {
-    display: flex;
-  }
-  
-  #segunda_linea {
-    margin: 3px;
-  }
-  
-  .tecla {
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 7px;
-    margin: 0 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
+#teclado div {
+display: flex;
+}
+
+#segunda_linea {
+margin: 3px;
+}
+
+.tecla {
+font-size: 1rem;
+font-weight: 700;
+border-radius: 5px;
+padding: 7px;
+margin: 0 2px;
+cursor: pointer;
+text-transform: uppercase;
+}
 
 @media(max-width: 576px){
     #contenedor {

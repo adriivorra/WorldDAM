@@ -511,7 +511,7 @@ window.addEventListener("load", function(){
     let perdidas5 = localStorage.getItem('perdidas4');
     let perdidas7 = localStorage.getItem('perdidas4');
 
-    document.getElementById("enviar").style.display = "none";
+    //document.getElementById("enviar").display = "none";
 
     let puntuacion = document.getElementById("puntuacion");
     puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
@@ -582,77 +582,122 @@ window.addEventListener("load", function(){
 
 
 
+
+
     let teclas = document.getElementsByClassName("tecla");
-
-
-    let palabraTeclado = [];
-    let n = 1;
-    console.log(n + "h");
-
     function teclas1(){
         for (let i = 0 ; i < teclas.length-1 ; i++) { // El -1 esta para que no coger el valor del enter que seria cadena vacia
             teclas[i].addEventListener("click", function() {
-                teclasTeclado(this.value, n);
+                teclasTeclado(this.value);
             });
         }
     }
     teclas1();
-    let res1;
+
+
+
     function teclasTeclado(valor){
-        document.getElementById("c" + n).value = valor;
-        
         console.log(valor);
-        if ( valor != "" && /^[a-zA-ZñÑ]$/.test(valor) != false && palabraTeclado.length != palabra_azar.length){
-            res1 = true;
-            palabraTeclado.push(valor);
+        if ( valor != "" && /^[a-zA-ZñÑ]$/.test(valor) != false && palabra.length != palabra_azar.length && valor != "Delete"){
+            res = true;
+            palabra.push(valor.toUpperCase());
+            document.getElementById("casilla" + (cont+1) + "_" + num).innerText = valor.toUpperCase();
+            document.getElementById("casilla" + (cont+1) + "_" + num).style.border = "3px solid black";
             cont++;
-            n++;
-            console.log(res1);
-            console.log(cont);
-            console.log(n + "d");
         }
         else
-            res1 = false;
+            res = false;
 
-  
+        if (valor == "Delete")
+        {
+            palabra.splice(palabra.length-1);
+            document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
+            cont--;
+        }
+    
         // console.log(palabraTeclado);
         // console.log(palabraTeclado.length);
     }
 
+
+
+
     let teclaEnviar = document.getElementById("teclaEnviar");
 
     teclaEnviar.addEventListener("click", function() {
-         enviarPalabra(palabra);
-         teclas1();
+        enviarPalabra();
     });
 
-
+    // function prueba(){
+    //     console.log("prueba");
     
+    //     for (let i = 0 ; i < palabra_azar.length ; i++){
+    //         let letra = document.getElementById("c" + (i+1)).value;
+    //         if ( letra != "" && /^[a-zA-ZñÑ]$/.test(letra) != false && palabra.length != palabra_azar.length){
+    //             document.getElementById("casilla_1_1").innerText = letra.toUpperCase();
+    //             res = true;
+    //             palabra.push(letra);
+    //             cont++;
+    //         }
+    //         else
+    //             res = false;
+    //     }
+// }
+
+
+
+document.addEventListener('keydown', (event) => {
+    var keyValue = event.key;
+    //for (let i = 0 ; i < palabra_azar.length ; i++){
+        //let letra = document.getElementById("c" + (i+1)).value;
+        if ( keyValue != "" && /^[a-zA-ZñÑ]$/.test(keyValue) != false && palabra.length != palabra_azar.length && keyValue != " " && event.key != "Backspace"){
+            //document.getElementById("casilla_1_1").innerText = letra.toUpperCase();
+
+            res = true;
+            palabra.push(keyValue.toUpperCase());
+
+            document.getElementById("casilla" + (cont+1) + "_" + num).innerText = keyValue.toUpperCase();
+            document.getElementById("casilla" + (cont+1) + "_" + num).style.border = "3px solid black";
+
+            cont++;
+
+        }
+        
+        // Borrar letras de la palabra escrita
+        if (event.key == "Backspace" &&  document.getElementById("casilla1" + "_" + num).innerText != "")
+        {
+            palabra.splice(palabra.length-1);
+            document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
+            cont--;
+        }
+
+        if (event.key == "Enter")
+            enviarPalabra();
+  }, false);
+    
+
 
     // Función para enviar la palabra a las casillas superiores
     function enviarPalabra(){
         // console.log(res);
         // console.log(cont);
         // console.log(palabra_azar.length);
-        n = 1;
-        let res = false; // Controlamos si se envia la palabra o no
-        palabra = []; //Ponemos el array a 0
-        cont = 0; // Ponemos el contador a 0
-        for (let i = 0 ; i < palabra_azar.length ; i++){
-            let letra = document.getElementById("c" + (i+1)).value;
-            if ( letra != "" && /^[a-zA-ZñÑ]$/.test(letra) != false && palabra.length != palabra_azar.length){
-                res = true;
-                palabra.push(letra);
-                cont++;
-            }
-            else
-                res = false;
-        }
-        if (n == palabra_azar.length+1)
-            n = 1;
-    
-
-        if (res && cont == palabra_azar.length)
+        // n = 1;
+        // let res = false; // Controlamos si se envia la palabra o no
+        // palabra = []; //Ponemos el array a 0
+        // cont = 0; // Ponemos el contador a 0
+        // for (let i = 0 ; i < palabra_azar.length ; i++){
+        //     let letra = document.getElementById("c" + (i+1)).value;
+        //     if ( letra != "" && /^[a-zA-ZñÑ]$/.test(letra) != false && palabra.length != palabra_azar.length){
+        //         //document.getElementById("casilla_1_1").innerText = letra.toUpperCase();
+        //         res = true;
+        //         palabra.push(letra);
+        //         cont++;
+        //     }
+        //     else
+        //         res = false;
+        // }
+        if (res && cont == palabra_azar.length && num <= 6)
         {
             let tipoArray;
 
@@ -665,30 +710,115 @@ window.addEventListener("load", function(){
 
             if (palabraEncontrada(tipoArray))
             {
-                console.log("hola3");
                 if (palabra.length == palabra_azar.length)
                     insertarComprobarPalabra(palabra, num);
                 else
                     insertarComprobarPalabra(palabraTeclado, num);
-                
-                
+       
                 palabra = [];
-                num++;
-                vaciarImputs();
-                cont = 0;
+                num++;     
+                cont = 0; 
             }
             else
             {
                 for (let i = 0 ; i < palabra_azar.length ; i++){
-                    document.getElementsByClassName("letra")[i].classList.add("noEncontrada"); // Efecto temblor de las casillas
-                    document.getElementsByClassName("letra")[i].style.border = "1px solid rgb(205, 93, 93)";
-                    document.getElementsByClassName("letra")[i].value = ""; // Borrar las letras de los imputs
+                    palabra = [];
+                    cont = 0;
+                    document.getElementById("casilla" + (i+1) + "_" + num).innerText = "";
+                    document.getElementById("casilla" + (i+1) + "_" + num).classList.add("noEncontrada");
                 }
                 document.getElementById("encontrada").innerText="Palabra no encontrada!"; //Mensaje de error
                 document.getElementById("encontrada").setAttribute("class","noEncontrada"); // Efecto temblor del texto
+
+                setTimeout(function () { 
+                    document.getElementById("encontrada").innerText="";
+                    document.getElementById("encontrada").classList.remove("noEncontrada"); // Quitar efecto temblor al texto
+                    for (let i = 0 ; i < palabra_azar.length ; i++){
+                        document.getElementById("casilla" + (i+1) + "_" + num).classList.remove("noEncontrada");
+                        document.getElementById("casilla" + (i+1) + "_" + num).style.border = "2px solid #3a3a3c";
+                    }
+                }, 1500) // Tiempo de retardo
             }
         }
     }
+
+
+    
+
+
+
+
+
+
+
+
+    // // Función para enviar la palabra a las casillas superiores
+    // function enviarPalabra(){
+    //     // console.log(res);
+    //     // console.log(cont);
+    //     // console.log(palabra_azar.length);
+    //     n = 1;
+    //     let res = false; // Controlamos si se envia la palabra o no
+    //     palabra = []; //Ponemos el array a 0
+    //     cont = 0; // Ponemos el contador a 0
+    //     for (let i = 0 ; i < palabra_azar.length ; i++){
+    //         let letra = document.getElementById("c" + (i+1)).value;
+    //         if ( letra != "" && /^[a-zA-ZñÑ]$/.test(letra) != false && palabra.length != palabra_azar.length){
+    //             res = true;
+    //             palabra.push(letra);
+    //             cont++;
+    //         }
+    //         else
+    //             res = false;
+    //     }
+    //     if (n == palabra_azar.length+1)
+    //         n = 1;
+    
+
+    //     if (res && cont == palabra_azar.length)
+    //     {
+    //         let tipoArray;
+
+    //         if (palabra_azar.length == 4)
+    //             tipoArray = palabras4letras;
+    //         else if (palabra_azar.length == 5)
+    //             tipoArray = palabras5letras;
+    //         else
+    //             tipoArray = palabras7letras;
+
+    //         if (palabraEncontrada(tipoArray))
+    //         {
+    //             console.log("hola3");
+    //             if (palabra.length == palabra_azar.length)
+    //                 insertarComprobarPalabra(palabra, num);
+    //             else
+    //                 insertarComprobarPalabra(palabraTeclado, num);
+                
+                
+    //             palabra = [];
+    //             num++;
+    //             vaciarImputs();
+    //             cont = 0;
+    //         }
+    //         else
+    //         {
+    //             for (let i = 0 ; i < palabra_azar.length ; i++){
+    //                 document.getElementsByClassName("letra")[i].classList.add("noEncontrada"); // Efecto temblor de las casillas
+    //                 document.getElementsByClassName("letra")[i].style.border = "1px solid rgb(205, 93, 93)";
+    //                 document.getElementsByClassName("letra")[i].value = ""; // Borrar las letras de los imputs
+    //             }
+    //             document.getElementById("encontrada").innerText="Palabra no encontrada!"; //Mensaje de error
+    //             document.getElementById("encontrada").setAttribute("class","noEncontrada"); // Efecto temblor del texto
+    //         }
+    //     }
+    // }
+
+
+
+
+
+
+
 
      // Ver si la palabra introducida esta en el diccionario (array de palabras)
      function palabraEncontrada(array){
@@ -701,9 +831,14 @@ window.addEventListener("load", function(){
             for (let i = 0 ; i < array.length; i++)
                 if (palabra.join("").toUpperCase().includes(array[i]))
                     encontrada = true;
-        console.log(encontrada);
         return encontrada;
     }
+
+
+
+
+
+
 
     // Función para insertar  y comprobar la palabra (y las letras)
     function insertarComprobarPalabra(palabra, num){
@@ -755,7 +890,9 @@ window.addEventListener("load", function(){
     // Funcion ganar
     function ganar()
     {
-        ocultarImputs(); // Ocultar los imputs
+        document.getElementById("teclado").style.display = "none";
+        num = 1;
+        //ocultarImputs(); // Ocultar los imputs
         mensajeFin("Has ganado!"); // Función para el mensaje de fin
         botonReintentar.innerText = "Volver a jugar"; // Texto que aparece en el botón de reintentar
         botonReintentar.style.display = ""; //Mostrar el botón de reintentar
@@ -800,6 +937,8 @@ window.addEventListener("load", function(){
     // Funcion perder 
     function perder()
     {
+        document.getElementById("teclado").style.display = "none";
+        num = 1;
         // Contar las partidas perdidad dependiendo de la dificultad
         if (palabra_azar.length == 7)
         perdidas7++;
@@ -807,7 +946,7 @@ window.addEventListener("load", function(){
             perdidas5++;
         else if (palabra_azar.length == 4)
             perdidas4++;
-        ocultarImputs(); // Ocultar imputs
+        //ocultarImputs(); // Ocultar imputs
         mensajeFin("Has perdido"); // Mensaje de fin
         botonReintentar.innerText = "Reintentar"; // Texto que aparece en el botón de reintentar
         botonReintentar.style.display = ""; // Mostrar el botón de reintentar
@@ -993,10 +1132,10 @@ window.addEventListener("load", function(){
         palabra_azar = array[numero];
         console.log(palabra_azar);
         generarRejilla();
-        generarInputs();
-        focusInputs();
+        // generarInputs();
+        // focusInputs();
         //document.getElementById("enviar").style.display = "";
-        document.getElementById("c1").focus();
+        //document.getElementById("c1").focus();
         document.getElementById("grafica").style.display = "none";
         botonEstadisticas.style.display = "none";
         document.querySelector("#titulo > h1").style.marginLeft = "-200px";
@@ -1006,6 +1145,7 @@ window.addEventListener("load", function(){
 
     // Botón de jugar de nuevo o reintentar
     botonReintentar.addEventListener("click", function() {
+        document.getElementById("teclado").style.display = "none";
         stopConfetti();
         //document.getElementById("enviar").style.display = ""; // Ocultamos el botón de enviar
         botonReintentar.style.display = "none"; // Ocultamos el botón de reintentar
@@ -1026,12 +1166,12 @@ window.addEventListener("load", function(){
             divCont.removeChild(cas);
         }
 
-        // Eliminamos los inputs
-        let divInputs = document.getElementById("inputs");
-        for (let i = 0 ; i < palabra_azar.length ; i++){
-            let cas = document.querySelector("#inputs > #c" + (i+1));
-            divInputs.removeChild(cas);
-        }
+        // // Eliminamos los inputs
+        // let divInputs = document.getElementById("inputs");
+        // for (let i = 0 ; i < palabra_azar.length ; i++){
+        //     let cas = document.querySelector("#inputs > #c" + (i+1));
+        //     divInputs.removeChild(cas);
+        // }
 
 
         //document.getElementById("enviar").style.display = "none"; // Ocultamos el botón de enviar
@@ -1039,17 +1179,21 @@ window.addEventListener("load", function(){
         document.querySelector("#titulo > h1").style.marginLeft = "";
     });
 
-    // Botón de enviar
-    let boton = document.getElementById("enviar");
-    boton.addEventListener("keypress", function() {
-        enviarPalabra();
-        document.getElementById("c1").focus();
-    });
 
-    boton.addEventListener("click", function() {
-        enviarPalabra();
-        document.getElementById("c1").focus();
-    });
+    let enviado = 1;
+    // // Botón de enviar
+    // let boton = document.getElementById("enviar");
+    // boton.addEventListener("keypress", function() {
+    //     enviarPalabra();
+    //     //document.getElementById("c1").focus();
+    //     return enviado++;
+    // });
+
+    // boton.addEventListener("click", function() {
+    //     enviarPalabra();
+    //     //document.getElementById("c1").focus();
+    //     return enviado++;
+    // });
 
 
 
@@ -1065,6 +1209,7 @@ window.addEventListener("load", function(){
     botonBaja.addEventListener("click", function() {
         document.getElementById("teclado").style.display = "";
        llamarFuncionesBotones(palabras4letras);
+       //prueba();  
     });
 
     // Botón dificulad media
@@ -1079,6 +1224,13 @@ window.addEventListener("load", function(){
     botonAlta.addEventListener("click", function() {
         llamarFuncionesBotones(palabras7letras);
     });
+
+
+
+
+
+
+
 
     // Botón para ver las estadísticas de partidas ganadas 
     let botonEstadisticas = document.getElementById("estadisticas");
