@@ -515,13 +515,14 @@ window.addEventListener("load", function(){
     let perdidas7 = localStorage.getItem('perdidas4');
 
 
+
    //let puntuacion = document.getElementById("puntuacion");
     //puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
+
+    // Ocultar
     let reiniciarEst = document.getElementById("reiniciarEstadisticas");
-    reiniciarEst.style.display = "none";
-
-    document.getElementById("teclado").style.display = "none";
-
+    reiniciarEst.style.display = "none"; // ocultar el botón de reiniciar estadísticas (solo aparece en la sección estadísticas)
+    document.getElementById("teclado").style.display = "none"; // Ocular teclado al inicio
     document.getElementById("inicio").style.display = "none"; //ocultamos el botón de ir a inicio de la sección de estadísticas
 
 
@@ -558,6 +559,7 @@ window.addEventListener("load", function(){
         }
     }
 
+    // Teclas del teclado en pantalla
     let teclas = document.getElementsByClassName("tecla");
     function teclas1(){
         for (let i = 0 ; i < teclas.length-1 ; i++) { // El -1 esta para que no coger el valor del enter que seria cadena vacia
@@ -567,8 +569,10 @@ window.addEventListener("load", function(){
         }
     }
 
-    teclas1();
+    teclas1(); // Llamamos a la función de las teclas en pantalla
 
+
+    // Función de las teclas del teclado en pantalla
     function teclasTeclado(valor){
         if ( valor != "" && /^[a-zA-ZñÑ]$/.test(valor) != false && palabra.length != palabra_azar.length && valor != "Delete"){
             res = true;
@@ -584,37 +588,10 @@ window.addEventListener("load", function(){
         {
             palabra.splice(palabra.length-1);
             document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
+            document.getElementById("casilla" + (cont) + "_" + num).style.border = "2px solid #3a3a3c";
             cont--;
         }
     }
-
-    let teclaEnviar = document.getElementById("teclaEnviar");
-
-    teclaEnviar.addEventListener("click", function() {
-        enviarPalabra();
-    });
-
-    document.addEventListener('keydown', (event) => {
-        var keyValue = event.key;
-        if ( keyValue != "" && /^[a-zA-ZñÑ]$/.test(keyValue) != false && palabra.length != palabra_azar.length && keyValue != " " && event.key != "Backspace"){
-            res = true;
-            palabra.push(keyValue.toUpperCase());
-            document.getElementById("casilla" + (cont+1) + "_" + num).innerText = keyValue.toUpperCase();
-            document.getElementById("casilla" + (cont+1) + "_" + num).style.border = "3px solid black";
-            cont++;
-        }
-        
-        // Borrar letras de la palabra escrita
-        if (event.key == "Backspace" &&  document.getElementById("casilla1" + "_" + num).innerText != "")
-        {
-            palabra.splice(palabra.length-1);
-            document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
-            cont--;
-        }
-
-        if (event.key == "Enter")
-            enviarPalabra();
-    }, false);
     
     // Función para enviar la palabra a las casillas superiores
     function enviarPalabra(){
@@ -701,13 +678,17 @@ window.addEventListener("load", function(){
             if (num <= longitudPalabras){
                 if (palabra_azar.charAt(i).includes(palabra[i].toUpperCase())) // Letras encontradas en la misma posición que la palabra a adivinar
                 {
-                    document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#538d4e";
+                    document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#538d4e"; // Colorear las letras encontradas
+                    document.getElementById(palabra[i].toUpperCase()).style.backgroundColor = "#538d4e"; // Poner colores a las teclas del teclado
                     fin++;
                 }
-                else if (palabra_azar.includes(palabra[i].toUpperCase()) && palabra_azar[i] != palabra.join("")[i] )//&& palabra_azar.charAt(i).includes(palabra[i].toUpperCase())) // letras encontradas en la palabra pero no en la misma posición
+                else if (palabra_azar.includes(palabra[i].toUpperCase()) && palabra_azar[i] != palabra.join("")[i] ){//&& palabra_azar.charAt(i).includes(palabra[i].toUpperCase())) // letras encontradas en la palabra pero no en la misma posición
                     document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#b59f3a";
-                else
-                    document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#3a3a3c"; // Letra no encontrada
+                    document.getElementById(palabra[i].toUpperCase()).style.backgroundColor = "#b59f3a"; // Poner colores a las teclas del teclado
+                }else{ // Letra no encontrada
+                    document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#3a3a3c";
+                    document.getElementById(palabra[i].toUpperCase()).style.backgroundColor = "#3a3a3c"; // Poner colores a las teclas del teclado
+                 } 
             }
             i++; // incrementar el contador
             if (palabra_azar.length == fin){
@@ -727,11 +708,11 @@ window.addEventListener("load", function(){
     function ganar()
     {
         document.getElementById("teclado").style.display = "none";
-        num = 1;
+        num = 1; // Ponemos num a 1 por si queremos volver a jugar que empiece desde la linea uno
         mensajeFin("Has ganado!"); // Función para el mensaje de fin
         botonReintentar.innerText = "Volver a jugar"; // Texto que aparece en el botón de reintentar
         botonReintentar.style.display = ""; //Mostrar el botón de reintentar
-        startConfetti();
+        startConfetti(); // Empieza el confetti
         
         // Puntuaciones
         let punt = 0;
@@ -765,7 +746,7 @@ window.addEventListener("load", function(){
             puntos = 0;
 
         actualizarGrafica(true); //octualizar la gráfica con las partidas ganadas
-        puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
+        //puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
         localStorage.setItem('puntos', puntos);
     }
 
@@ -850,10 +831,44 @@ window.addEventListener("load", function(){
         return palabra_azar;
     }
 
+    // Pulsaciones de las teclas del teclado
+    document.addEventListener('keydown', (event) => {
+        var keyValue = event.key;
+        if ( keyValue != "" && /^[a-zA-ZñÑ]$/.test(keyValue) != false && palabra.length != palabra_azar.length && keyValue != " " && event.key != "Backspace"){
+            res = true;
+            palabra.push(keyValue.toUpperCase());
+            document.getElementById("casilla" + (cont+1) + "_" + num).innerText = keyValue.toUpperCase();
+            document.getElementById("casilla" + (cont+1) + "_" + num).style.border = "3px solid black";
+            cont++;
+        }
+        
+        // Borrar letras de la palabra escrita
+        if (event.key == "Backspace" &&  document.getElementById("casilla1" + "_" + num).innerText != "")
+        {
+            palabra.splice(palabra.length-1);
+            document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
+            document.getElementById("casilla" + (cont) + "_" + num).style.border = "2px solid #3a3a3c";
+            cont--;
+        }
+
+        if (event.key == "Enter")
+            enviarPalabra();
+    }, false);
+
+
+
+    // Tecla enter para enviar la palabra
+    let teclaEnviar = document.getElementById("teclaEnviar");
+    teclaEnviar.addEventListener("click", function() {
+        enviarPalabra();
+    });
 
     // Botón de jugar de nuevo o reintentar
     botonReintentar.addEventListener("click", function() {
-        document.getElementById("teclado").style.display = "none";
+        document.getElementById("teclado").style.display = "none"; // Ocultar el teclado
+        // Quitar colores de las teclas
+        for (let i = 0 ; i < teclas.length ; i++)
+            teclas[i].style.backgroundColor = "";
         stopConfetti();
         botonReintentar.style.display = "none"; // Ocultamos el botón de reintentar
         document.getElementById("mensaje").removeChild(document.querySelector("#mensaje > h3")); // Eliminamos el mensaje
@@ -935,13 +950,13 @@ window.addEventListener("load", function(){
         datasets : [
         {
             label: "Partidas ganadas",
-            backgroundColor : "blue", 
+            backgroundColor : "rgb(124, 192, 228)", 
             borderColor : "black",
             data : [ganadas4, ganadas5, ganadas7]
         },
         {
             label: "Partidas perdidas",
-            backgroundColor : "red", 
+            backgroundColor : "rgb(245, 128, 128)", 
             borderColor : "black",
             data : [perdidas4, perdidas5, perdidas7]
         }]
