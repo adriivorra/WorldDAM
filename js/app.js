@@ -605,7 +605,7 @@ window.addEventListener("load", function(){
             else
                 tipoArray = palabras7letras;
 
-            if (palabraEncontrada(tipoArray))
+            if (tipoArray.inArray(palabra))
             {
                 if (palabra.length == palabra_azar.length)
                     insertarComprobarPalabra(palabra, num);
@@ -639,19 +639,37 @@ window.addEventListener("load", function(){
         }
     }
 
-     // Ver si la palabra introducida esta en el diccionario (array de palabras)
-     function palabraEncontrada(array){
-        let encontrada = false;
-        if (palabra.length == palabra_azar.length)
-            for (let i = 0 ; i < array.length; i++)
-                if (palabra.join("").toUpperCase().includes(array[i]))
-                    encontrada = true;
-        else
-            for (let i = 0 ; i < array.length; i++)
-                if (palabra.join("").toUpperCase().includes(array[i]))
-                    encontrada = true;
-        return encontrada;
-    }
+     // Ver si la palabra introducida esta en el diccionario (array de palabras) 
+     //(Esta función no se puede utilzar porque no es eficiente y tarda en encontrar si la palabra esta en el array o no (sobretodo en dispostivos moviles que son mas lentos ))
+    //  function palabraEncontrada(array){
+    //     let encontrada = false;
+    //     if (palabra.length == palabra_azar.length)
+    //         for (let i = 0 ; i < array.length; i++)
+    //             if (palabra.join("").toUpperCase().includes(array[i])){
+    //                 encontrada = true;
+    //                 break;
+    //             }
+    //     else
+    //         for (let i = 0 ; i < array.length; i++)
+    //             if (palabra.join("").toUpperCase().includes(array[i])){
+    //                 encontrada = true;
+    //                 break;
+    //             }
+    //     return encontrada;
+    // }
+
+
+    // Ver si la palabra introducida esta en el diccionario (array de palabras)
+    Array.prototype.inArray = function inArray (search) {
+        let founded = false
+        for (let i = 0; i < this.length; i++) {
+          if (this[i] == search.join("").toUpperCase()) {
+            founded = true
+            break
+          }
+        }
+        return founded;
+      }
 
     // Función para insertar  y comprobar la palabra (y las letras)
     function insertarComprobarPalabra(palabra, num){

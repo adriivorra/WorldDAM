@@ -206,7 +206,7 @@ input.casilla
     margin: 2px;
 } */
 
-#teclado {
+/* #teclado {
 
     display: inline-flex;
     flex-direction: column;
@@ -215,7 +215,7 @@ input.casilla
   
 #teclado div {
 display: flex;
-}
+} */
 
 #segunda_linea {
 margin: 3px;
