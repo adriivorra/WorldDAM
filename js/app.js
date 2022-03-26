@@ -704,8 +704,8 @@ window.addEventListener("load", function(){
                     document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#b59f3a";
                     document.getElementById(palabra[i].toUpperCase()).style.backgroundColor = "#b59f3a"; // Poner colores a las teclas del teclado
                 }else{ // Letra no encontrada
-                    document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#3a3a3c";
-                    document.getElementById(palabra[i].toUpperCase()).style.backgroundColor = "#3a3a3c"; // Poner colores a las teclas del teclado
+                    document.getElementById("casilla" + (i+1) + "_" + num).style.backgroundColor = "#606063";
+                    document.getElementById(palabra[i].toUpperCase()).style.backgroundColor = "#606063"; // Poner colores a las teclas del teclado
                  } 
             }
             i++; // incrementar el contador

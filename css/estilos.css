@@ -34,8 +34,10 @@ body
   }
 
   .tecla{
+    width: auto;
+    height: auto;
+    padding: 1.2vh;
 
-    flex-basis: 40px;
     cursor: pointer;
     text-transform: uppercase;
     border-radius: 5px;
