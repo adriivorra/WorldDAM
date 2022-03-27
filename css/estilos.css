@@ -293,7 +293,7 @@ input.casilla
 
 
 @media(orientation: portrait){
-    /* #contenedor {
+    #contenedor {
         margin-top: -200px;
         height: 85vh;
         display: flex;
@@ -310,7 +310,7 @@ input.casilla
         margin: auto;
         overflow-y: center;
         overflow-x: hidden;
-    } */
+    }
 
 
 
