@@ -2,10 +2,10 @@ body
 {
     color: #000;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', Arial, sans-serif;   
+
     overflow-x: hidden;
     margin: 0;
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
-    touch-action: none;
 }
 
 #contenedor {
@@ -15,6 +15,7 @@ body
     right: 0;
     bottom: 0;
     margin: auto;
+
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -27,16 +28,14 @@ body
     display: grid;
     grid-template-columns: repeat(21, minmax(auto, 1.25em));
     grid-auto-rows: 3em;
-    gap: .45em;
+    gap: 1.4em .45em;
     justify-content: center;
     margin-left: 15px;
 }
 
 #casillas{
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    margin-bottom: 2em;
+
+    margin-bottom: 1em;
 
 }
 
@@ -44,7 +43,7 @@ body
     font-size: inherit;
     grid-column: span 2;
     border: none;
-    padding: 1em;
+    padding: 2em 1.6em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -258,40 +257,8 @@ input.casilla
         border-radius: 7px;
     }
 
-
-    #teclado{
-        display: grid;
-        grid-template-columns: repeat(21, minmax(auto, 1.25em));
-        grid-auto-rows: 3em;
-        gap: 1.4em .45em;
-        justify-content: center;
-        margin-left: 15px;
-    }
-    
-    .tecla{
-        font-size: inherit;
-        grid-column: span 2;
-        border: none;
-        padding: 2em 1.6em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: hsl(213, 6%, 63%);
-        color: white;
-        fill: white;
-        text-transform: uppercase;
-        border-radius: .25em;
-        cursor: pointer;
-        user-select: none;
-    
-    }
-
-    .teclaLarga{
-        grid-column: span 3;
-    }
-
     #reintentar, #texto, #titulo, #baja, #media, #alta{
-        font-size: 20px;
+        font-size: 22px;
     }
 
     #titulo{
