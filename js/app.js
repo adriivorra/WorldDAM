@@ -80,6 +80,7 @@ window.addEventListener("load", function(){
 
     // Función de las teclas del teclado en pantalla
     function teclasTeclado(valor){
+        console.log(valor);
         if ( valor != "" && /^[a-zA-ZñÑ]$/.test(valor) != false && palabra.length != palabra_azar.length && valor != "Delete"){
             res = true;
             palabra.push(valor.toUpperCase());
@@ -96,6 +97,11 @@ window.addEventListener("load", function(){
             document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
             document.getElementById("casilla" + (cont) + "_" + num).style.border = "2px solid #3a3a3c";
             cont--;
+        }
+
+        if (valor == "Enter")
+        {
+            enviarPalabra();
         }
     }
     
@@ -269,7 +275,7 @@ window.addEventListener("load", function(){
         else if (num == 7 || num == 8)
             puntos = 0;
 
-        actualizarGrafica(true); //octualizar la gráfica con las partidas ganadas
+        //actualizarGrafica(true); //octualizar la gráfica con las partidas ganadas
         //puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
         localStorage.setItem('puntos', puntos);
     }
@@ -290,42 +296,42 @@ window.addEventListener("load", function(){
         mensajeFin("Has perdido"); // Mensaje de fin
         botonReintentar.innerText = "Reintentar"; // Texto que aparece en el botón de reintentar
         botonReintentar.style.display = ""; // Mostrar el botón de reintentar
-        actualizarGrafica(false); // Actualizamos la gráfica con las partidas perdidas
+        //actualizarGrafica(false); // Actualizamos la gráfica con las partidas perdidas
     }
 
     // Función para actualizar la gráfica 
-    function actualizarGrafica(ganada){
+    // function actualizarGrafica(ganada){
 
-        // Dependiendo de si seha ganado o perdido
-        if (ganada)
-        {
-            if (palabra_azar.length == 7)
-                datos.datasets[0].data[2] = ganadas7;
-            else if (palabra_azar.length == 5)
-                datos.datasets[0].data[1] = ganadas5;
-            else if (palabra_azar.length == 4)
-                datos.datasets[0].data[0] = ganadas4;
-        }
-        else
-        {
-            if (palabra_azar.length == 7)
-                datos.datasets[1].data[2] = perdidas7;
-            else if (palabra_azar.length == 5)
-                datos.datasets[1].data[1] = perdidas5;
-            else if (palabra_azar.length == 4)
-                datos.datasets[1].data[0] = perdidas4;
-        }
+    //     // Dependiendo de si seha ganado o perdido
+    //     if (ganada)
+    //     {
+    //         if (palabra_azar.length == 7)
+    //             datos.datasets[0].data[2] = ganadas7;
+    //         else if (palabra_azar.length == 5)
+    //             datos.datasets[0].data[1] = ganadas5;
+    //         else if (palabra_azar.length == 4)
+    //             datos.datasets[0].data[0] = ganadas4;
+    //     }
+    //     else
+    //     {
+    //         if (palabra_azar.length == 7)
+    //             datos.datasets[1].data[2] = perdidas7;
+    //         else if (palabra_azar.length == 5)
+    //             datos.datasets[1].data[1] = perdidas5;
+    //         else if (palabra_azar.length == 4)
+    //             datos.datasets[1].data[0] = perdidas4;
+    //     }
 
-        //  Guardamos los datos de las partidas ganas y perdidas en el navegador
-        localStorage.setItem('ganadas4', ganadas4);
-        localStorage.setItem('ganadas5', ganadas5);
-        localStorage.setItem('ganadas7', ganadas7);
+    //     //  Guardamos los datos de las partidas ganas y perdidas en el navegador
+    //     localStorage.setItem('ganadas4', ganadas4);
+    //     localStorage.setItem('ganadas5', ganadas5);
+    //     localStorage.setItem('ganadas7', ganadas7);
 
-        localStorage.setItem('perdidas4', perdidas4);
-        localStorage.setItem('perdidas5', perdidas5);
-        localStorage.setItem('perdidas7', perdidas7);
-        //chart.update(); // Actualizar gráfica
-    }
+    //     localStorage.setItem('perdidas4', perdidas4);
+    //     localStorage.setItem('perdidas5', perdidas5);
+    //     localStorage.setItem('perdidas7', perdidas7);
+    //     chart.update(); // Actualizar gráfica
+    // }
 
     // Mensaje de fin personalizado
     function mensajeFin(mensaje){
@@ -349,7 +355,7 @@ window.addEventListener("load", function(){
         palabra_azar = array[numero];
         console.log(palabra_azar);
         generarRejilla();
-        document.getElementById("grafica").style.display = "none";
+        //document.getElementById("grafica").style.display = "none";
         botonEstadisticas.style.display = "none";
         document.querySelector("#titulo > h1").style.marginLeft = "-200px";
         return palabra_azar;
@@ -361,6 +367,7 @@ window.addEventListener("load", function(){
         if ( keyValue != "" && /^[a-zA-ZñÑ]$/.test(keyValue) != false && palabra.length != palabra_azar.length && keyValue != " " && event.key != "Backspace"){
             res = true;
             palabra.push(keyValue.toUpperCase());
+            document.getElementById("casilla" + (cont+1) + "_" + num).classList.add("animacionEscribir");
             document.getElementById("casilla" + (cont+1) + "_" + num).innerText = keyValue.toUpperCase();
             document.getElementById("casilla" + (cont+1) + "_" + num).style.border = "3px solid black";
             cont++;
@@ -464,6 +471,7 @@ window.addEventListener("load", function(){
         //chart.update(); // Actualizar gráfica
         location.reload(); //Recargar página y que se recargue bien la gráfica
     });
+
 
     // // Datos de la gráfica
     // let datos = {
