@@ -132,7 +132,8 @@ window.addEventListener("load", function(){
             {
                 palabra = [];
                 cont = 0;
-                
+                document.getElementsByClassName("modal")[0].style.height = "50px";
+                document.getElementsByClassName("modal")[0].style.width = "100px";
                 for (let i = 0 ; i < palabra_azar.length ; i++){
                     document.getElementById("casilla" + (i+1) + "_" + num).innerText = "";
                     document.getElementById("casilla" + (i+1) + "_" + num).classList.add("noEncontrada");
@@ -142,6 +143,8 @@ window.addEventListener("load", function(){
                 modal_container.classList.add('show'); 
                 setTimeout(function () {
                     modal_container.classList.remove('show'); 
+                    document.getElementsByClassName("modal")[0].style.height = "150px";
+                    document.getElementsByClassName("modal")[0].style.width = "150px";
                     document.getElementById("reintentar").style.display = "none";
                     for (let i = 0 ; i < palabra_azar.length ; i++){
                         document.getElementById("casilla" + (i+1) + "_" + num).classList.remove("noEncontrada");

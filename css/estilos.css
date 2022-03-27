@@ -349,6 +349,7 @@ input.casilla
   .modal {
     background-color: #fff;
     width: 150px;
+    height: 150px;
     max-width: 100%;
     padding: 30px 50px;
     border-radius: 5px;
@@ -382,6 +383,7 @@ input.casilla
 }
 
   @media (min-width: 350px) {
+
     .casilla {
         width: 62px;
         height: 62px;
