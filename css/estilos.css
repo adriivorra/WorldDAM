@@ -5,9 +5,24 @@ body
     overflow-y: hidden;
     overflow-x: hidden;
     margin: 0;
+
+    font-size: clamp(.5rem, 2.5vmin, 1.5rem);
 }
 
 #contenedor {
+    /* position: absolute;
+    top: -10;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; */
+
     position: absolute;
     top: 0;
     left: 0;
@@ -22,8 +37,39 @@ body
     align-items: center;
 }
 
+#teclado{
+    display: grid;
+    grid-template-columns: repeat(21, minmax(auto, 1.25em));
+    grid-auto-rows: 3em;
+    gap: .45em;
+    justify-content: center;
+    margin-left: 15px;
+}
 
-#teclado {
+.tecla{
+    font-size: inherit;
+    grid-column: span 2;
+    border: none;
+    padding: 1.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(213, 6%, 63%);
+    color: white;
+    fill: white;
+    text-transform: uppercase;
+    border-radius: .25em;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.teclaLarga{
+    grid-column: span 3;
+}
+
+
+/* #teclado {
 
     display: flex;
     flex-direction: column;
@@ -41,15 +87,15 @@ body
     cursor: pointer;
     text-transform: uppercase;
     border-radius: 5px;
-  }
+  } */
 /* 
    #teclado div {
     display: flex;
 } */
 
-#segunda_linea {
+/* #segunda_linea {
     margin: 0.4rem 0;
-}
+} */
 
 /* .tecla {
     font-size: 1rem;

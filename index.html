@@ -8,6 +8,9 @@
     <script src="js/chart.js"></script>
     <script src="js/confetti.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/palabras4letras.js"></script>
+    <script src="js/palabras5letras.js"></script>
+    <script src="js/palabras7letras.js"></script>
 </head>
 <body>
     <div id="mensajeFinal"></div>
@@ -28,49 +31,44 @@
             <p id="media" class="botones">Media</p>
             <p id="alta" class="botones">Alta</p>
         </div>
-        <div id="grafica">
+        <!-- <div id="grafica">
             <canvas id="grafico" height="300" width="400"></canvas>
+        </div> -->
+        <div id="casillas"></div>
+        <div id="teclado">
+            <button class="tecla" value="Q" id="Q">q</button>
+            <button class="tecla" value="W" id="W">w</button>
+            <button class="tecla" value="E" id="E">e</button>
+            <button class="tecla" value="R" id="R">r</button>
+            <button class="tecla" value="T" id="T">t</button>
+            <button class="tecla" value="Y" id="Y">y</button>
+            <button class="tecla" value="U" id="U">u</button>
+            <button class="tecla" value="I" id="I">i</button>
+            <button class="tecla" value="O" id="O">o</button>
+            <button class="tecla" value="P" id="P">p</button>
+            <div class="space"></div>
+            <button class="tecla" value="A" id="A">a</button>
+            <button class="tecla" value="S" id="S">s</button>
+            <button class="tecla" value="D" id="D">d</button>
+            <button class="tecla" value="F" id="F">f</button>
+            <button class="tecla" value="G" id="G">g</button>
+            <button class="tecla" value="H" id="H">h</button>
+            <button class="tecla" value="J" id="J">j</button>
+            <button class="tecla" value="K" id="K">k</button>
+            <button class="tecla" value="L" id="L">l</button>
+            <button class="tecla" value="Ñ" id="Ñ">ñ</button>
+            <div class="space"></div>
+            <button class="teclaLarga tecla" id="teclaEnviar">Enter</button>
+            <button class="tecla" value="Z" id="Z">z</button>
+            <button class="tecla" value="X" id="X">x</button>
+            <button class="tecla" value="C" id="C">c</button>
+            <button class="tecla" value="V" id="V">v</button>
+            <button class="tecla" value="B" id="B">b</button>
+            <button class="tecla" value="N" id="N">n</button>
+            <button class="tecla" value="M" id="M">m</button>
+            <button class="teclaLarga tecla" value="Delete">Del</button>
         </div>
         <div id="mensaje"></div>
-        <div id="casillas">
-        </div>
-        <div id="teclado">
-            <div id="primera_linea">
-                <button class="tecla" value="Q" id="Q">q</button>
-                <button class="tecla" value="W" id="W">w</button>
-                <button class="tecla" value="E" id="E">e</button>
-                <button class="tecla" value="R" id="R">r</button>
-                <button class="tecla" value="T" id="T">t</button>
-                <button class="tecla" value="Y" id="Y">y</button>
-                <button class="tecla" value="U" id="U">u</button>
-                <button class="tecla" value="I" id="I">i</button>
-                <button class="tecla" value="O" id="O">o</button>
-                <button class="tecla" value="P" id="P">p</button>
-            </div>
-            <div id="segunda_linea">
-                <button class="tecla" value="A" id="A">a</button>
-                <button class="tecla" value="S" id="S">s</button>
-                <button class="tecla" value="D" id="D">d</button>
-                <button class="tecla" value="F" id="F">f</button>
-                <button class="tecla" value="G" id="G">g</button>
-                <button class="tecla" value="H" id="H">h</button>
-                <button class="tecla" value="J" id="J">j</button>
-                <button class="tecla" value="K" id="K">k</button>
-                <button class="tecla" value="L" id="L">l</button>
-                <button class="tecla" value="Ñ" id="Ñ">ñ</button>
-            </div>
-            <div id="tercera_linea">
-                <button class="tecla" value="Delete">Del</button>
-                <button class="tecla" value="Z" id="Z">z</button>
-                <button class="tecla" value="X" id="X">x</button>
-                <button class="tecla" value="C" id="C">c</button>
-                <button class="tecla" value="V" id="V">v</button>
-                <button class="tecla" value="B" id="B">b</button>
-                <button class="tecla" value="N" id="N">n</button>
-                <button class="tecla" value="M" id="M">m</button>
-                <button class="tecla" id="teclaEnviar">Enter</button>
-            </div>
-        </div>
         <p id="encontrada"></p>
         <!-- <p id="puntuacion"><strong>Puntuación:</strong> 0 puntos</p> -->
     </section>
