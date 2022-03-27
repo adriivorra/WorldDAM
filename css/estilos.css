@@ -35,11 +35,9 @@ body
 }
 
 #casillas{
-    display: grid;
+    
+    gap: 1.4em .45em;
     justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    margin-bottom: 1em;
 }
 
 .tecla{
@@ -72,6 +70,44 @@ body
     50% {transform: scale(1.02)};
     100% {transform: scale(1.00)};
 }
+
+
+/* #teclado {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+  }
+
+  .tecla{
+    width: auto;
+    height: auto;
+    padding: 1.2vh;
+
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 5px;
+  } */
+/* 
+   #teclado div {
+    display: flex;
+} */
+
+/* #segunda_linea {
+    margin: 0.4rem 0;
+} */
+
+/* .tecla {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.6rem 0.6rem;
+    margin: 0px 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+}  */
 
 #titulo
 {
@@ -140,12 +176,12 @@ body
     text-align: center;
 }
 
-/* #casillas
+#casillas
 {
     width: 450px;
     margin-bottom: 30px;
     margin-top: 20px;
-} */
+}
 
 #casillas div
 {
@@ -257,6 +293,25 @@ input.casilla
 
 
 @media(orientation: portrait){
+    /* #contenedor {
+        margin-top: -200px;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        overflow-y: center;
+        overflow-x: hidden;
+    } */
+
 
 
 .casilla {
