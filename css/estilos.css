@@ -30,7 +30,6 @@ body
     justify-content: center;
     margin-left: 15px;
     margin-top: -20px;
-    margin-bottom: 150px;
 }
 
 #casillas{
@@ -304,18 +303,7 @@ input.casilla
         grid-column: span 3;
     }
 
-    .casilla {
-        width: 50px;
-        height: 50px;
-        border: 2px solid#3a3a3c;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 2px;
-        font-size: 2em;
-        border-radius: 7px;
-    }
+
     #reintentar, #texto, #titulo, #baja, #media, #alta{
         font-size: 22px;
     }
@@ -375,4 +363,36 @@ input.casilla
   .modal p {
     opacity: 0.7;
     font-size: 14px;
+  }
+
+
+  @media (max-width: 320px) {
+    .casilla {
+        width: 50px;
+        height: 50px;
+        border: 2px solid#3a3a3c;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2px;
+        font-size: 2em;
+        border-radius: 7px;
+    }
+}
+
+  @media (min-width: 350px) {
+    .casilla {
+        width: 62px;
+        height: 62px;
+        border: 2px solid#3a3a3c;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2px;
+        font-size: 2em;
+        border-radius: 7px;
+    }
+
   }
