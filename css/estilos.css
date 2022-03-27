@@ -2,39 +2,25 @@ body
 {
     color: #000;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', Arial, sans-serif;   
-    overflow-y: hidden;
     overflow-x: hidden;
     margin: 0;
-
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+    touch-action: none;
 }
 
 #contenedor {
-    /* position: absolute;
-    top: -10;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center; */
-
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-
-    height: 85vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
 }
 
 #teclado{
@@ -46,11 +32,19 @@ body
     margin-left: 15px;
 }
 
+#casillas{
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin-bottom: 2em;
+
+}
+
 .tecla{
     font-size: inherit;
     grid-column: span 2;
     border: none;
-    padding: 1.6em;
+    padding: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,44 +71,6 @@ body
     100% {transform: scale(1.00)};
 }
 
-
-/* #teclado {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
-  }
-
-  .tecla{
-    width: auto;
-    height: auto;
-    padding: 1.2vh;
-
-    cursor: pointer;
-    text-transform: uppercase;
-    border-radius: 5px;
-  } */
-/* 
-   #teclado div {
-    display: flex;
-} */
-
-/* #segunda_linea {
-    margin: 0.4rem 0;
-} */
-
-/* .tecla {
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 0.6rem 0.6rem;
-    margin: 0px 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-}  */
-
 #titulo
 {
     text-align: center;
@@ -124,6 +80,7 @@ body
     display: grid;
     grid-template-rows: 1;
     grid-template-columns:  auto auto auto;
+
 }
 
 #titulo{
@@ -181,14 +138,14 @@ body
     text-align: center;
 }
 
-#casillas, #formulario
+/* #casillas
 {
     width: 450px;
     margin-bottom: 30px;
     margin-top: 20px;
-}
+} */
 
-#casillas div, #formulario div 
+#casillas div
 {
     display: flex;
     justify-content: center;
@@ -238,10 +195,6 @@ input.casilla
     transition: 0.2s;
 }
 
-#mensajeFinal{
-    z-index: 1;
-
-}
 
 #reintentar{
     padding: 10px;
@@ -252,8 +205,6 @@ input.casilla
     border-style: none;
     font-size: 20px;
 }
-
-
 
 .botones{
     border-style: none;
@@ -293,64 +244,55 @@ input.casilla
     75% {transform: translateX(4px);}
 }
 
-
-
-/* .tecla{
-    padding: 7px;
-    margin: 2px;
-} */
-
-
 @media(orientation: portrait){
-    /* #contenedor {
-        margin-top: -200px;
-        height: 85vh;
+    .casilla {
+        width: 50px;
+        height: 50px;
+        border: 2px solid#3a3a3c;
+        box-sizing: border-box;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        overflow-y: center;
-        overflow-x: hidden;
-    } */
-
-
-
-    /* #dificultad, #casillas, #formualario, #inputs{
-        transform: scale(1.5);
+        margin: 2px;
+        font-size: 2em;
+        border-radius: 7px;
     }
 
-    #mensaje{
-        margin-bottom: 100px;
-        font-size: 30px;
+
+    #teclado{
+        display: grid;
+        grid-template-columns: repeat(21, minmax(auto, 1.25em));
+        grid-auto-rows: 3em;
+        gap: 1.4em .45em;
+        justify-content: center;
+        margin-left: 15px;
+    }
+    
+    .tecla{
+        font-size: inherit;
+        grid-column: span 2;
+        border: none;
+        padding: 2em 1.6em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(213, 6%, 63%);
+        color: white;
+        fill: white;
+        text-transform: uppercase;
+        border-radius: .25em;
+        cursor: pointer;
+        user-select: none;
+    
     }
 
-    #casillas{
-        margin-top: 60px;
+    .teclaLarga{
+        grid-column: span 3;
     }
-
-    #inputs{
-        margin-top: 110px;
-    }
-
-    #enviar{
-        margin-top: 40px;
-        font-size: 30px;
-    } */
 
     #reintentar, #texto, #titulo, #baja, #media, #alta{
-        font-size: 22px;
+        font-size: 20px;
     }
-    /* #titulo{
-        margin: 30px;
-    } */
 
     #titulo{
         margin-left: -20px;
@@ -361,9 +303,6 @@ input.casilla
         margin-top: 10px;
         margin-left: 120px;
     }
-
-    
-
 }
 
 
