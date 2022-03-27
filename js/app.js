@@ -23,6 +23,8 @@ window.addEventListener("load", function(){
     let perdidas5 = localStorage.getItem('perdidas4');
     let perdidas7 = localStorage.getItem('perdidas4');
 
+
+    const modal_container = document.getElementById('modal_container');
    //let puntuacion = document.getElementById("puntuacion");
     //puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
 
@@ -32,16 +34,6 @@ window.addEventListener("load", function(){
     document.getElementById("teclado").style.display = "none"; // Ocular teclado al inicio
     document.getElementById("inicio").style.display = "none"; //ocultamos el botón de ir a inicio de la sección de estadísticas
     document.getElementById("harryPotter").style.display = "none";
-
-    // Crear botón para volver a jugar
-    // let sectionContenedor = document.getElementById("contenedor");
-    // let botonReintentar = document.createElement("button");
-
-    // // Atributos del botón de reintentar
-    // botonReintentar.setAttribute("id","reintentar");
-    // botonReintentar.style.display = "none";
-
-    // sectionContenedor.appendChild(botonReintentar); // Insertamos el botón
 
     // Función para generar la rejilla con las casillas de cada palabra
     function generarRejilla(){
@@ -78,9 +70,7 @@ window.addEventListener("load", function(){
 
     teclas1(); // Llamamos a la función de las teclas en pantalla
 
-
-
-
+    // Función para saber si estamos desde movil o no
     function isMobile(){
         return (
             (navigator.userAgent.match(/Android/i)) ||
@@ -91,9 +81,6 @@ window.addEventListener("load", function(){
             (navigator.userAgent.match(/BlackBerry/i))
         );
     }
-
-    
-
 
     // Función de las teclas del teclado en pantalla
     function teclasTeclado(valor){
@@ -115,9 +102,7 @@ window.addEventListener("load", function(){
         }
 
         if (valor == "Enter")
-        {
             enviarPalabra();
-        }
     }
     
     // Función para enviar la palabra a las casillas superiores
@@ -186,7 +171,6 @@ window.addEventListener("load", function(){
     //     return encontrada;
     // }
 
-
     // Ver si la palabra introducida esta en el diccionario (array de palabras)
     Array.prototype.inArray = function inArray (search) {
         let founded = false
@@ -254,13 +238,8 @@ window.addEventListener("load", function(){
     function ganar()
     {
         document.getElementById("teclado").style.display = "none";
-
-
-
         num = 1; // Ponemos num a 1 por si queremos volver a jugar que empiece desde la linea uno
         mensajeFin("Has ganado!"); // Función para el mensaje de fin
-        //botonReintentar.innerText = "Volver a jugar"; // Texto que aparece en el botón de reintentar
-        //botonReintentar.style.display = ""; //Mostrar el botón de reintentar
         startConfetti(); // Empieza el confetti
         
         // Puntuaciones
@@ -294,7 +273,6 @@ window.addEventListener("load", function(){
         else if (num == 7 || num == 8)
             puntos = 0;
 
-        //actualizarGrafica(true); //octualizar la gráfica con las partidas ganadas
         //puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
         localStorage.setItem('puntos', puntos);
     }
@@ -311,46 +289,21 @@ window.addEventListener("load", function(){
             perdidas5++;
         else if (palabra_azar.length == 4)
             perdidas4++;
-        //ocultarImputs(); // Ocultar imputs
         mensajeFin("Has perdido"); // Mensaje de fin
-        //botonReintentar.innerText = "Reintentar"; // Texto que aparece en el botón de reintentar
-        //botonReintentar.style.display = ""; // Mostrar el botón de reintentar
-        //actualizarGrafica(false); // Actualizamos la gráfica con las partidas perdidas
     }
 
     // Función para actualizar la gráfica 
-    // function actualizarGrafica(ganada){
+    function actualizarGrafica(ganada){
 
-    //     // Dependiendo de si seha ganado o perdido
-    //     if (ganada)
-    //     {
-    //         if (palabra_azar.length == 7)
-    //             datos.datasets[0].data[2] = ganadas7;
-    //         else if (palabra_azar.length == 5)
-    //             datos.datasets[0].data[1] = ganadas5;
-    //         else if (palabra_azar.length == 4)
-    //             datos.datasets[0].data[0] = ganadas4;
-    //     }
-    //     else
-    //     {
-    //         if (palabra_azar.length == 7)
-    //             datos.datasets[1].data[2] = perdidas7;
-    //         else if (palabra_azar.length == 5)
-    //             datos.datasets[1].data[1] = perdidas5;
-    //         else if (palabra_azar.length == 4)
-    //             datos.datasets[1].data[0] = perdidas4;
-    //     }
+        //  Guardamos los datos de las partidas ganas y perdidas en el navegador
+        localStorage.setItem('ganadas4', ganadas4);
+        localStorage.setItem('ganadas5', ganadas5);
+        localStorage.setItem('ganadas7', ganadas7);
 
-    //     //  Guardamos los datos de las partidas ganas y perdidas en el navegador
-    //     localStorage.setItem('ganadas4', ganadas4);
-    //     localStorage.setItem('ganadas5', ganadas5);
-    //     localStorage.setItem('ganadas7', ganadas7);
-
-    //     localStorage.setItem('perdidas4', perdidas4);
-    //     localStorage.setItem('perdidas5', perdidas5);
-    //     localStorage.setItem('perdidas7', perdidas7);
-    //     chart.update(); // Actualizar gráfica
-    // }
+        localStorage.setItem('perdidas4', perdidas4);
+        localStorage.setItem('perdidas5', perdidas5);
+        localStorage.setItem('perdidas7', perdidas7);
+    }
 
     // Mensaje de fin personalizado
     function mensajeFin(mensaje){
@@ -378,9 +331,7 @@ window.addEventListener("load", function(){
         palabra_azar = array[numero];
         console.log(palabra_azar);
         generarRejilla();
-        //document.getElementById("grafica").style.display = "none";
         //botonEstadisticas.style.display = "none";
-        //document.querySelector("#titulo > h1").style.marginLeft = "-200px";
         return palabra_azar;
     }
 
@@ -417,8 +368,6 @@ window.addEventListener("load", function(){
         enviarPalabra();
     });
 
-
-
     let botonReintentar = document.getElementById("reintentar");
     // Botón de jugar de nuevo o reintentar
     botonReintentar.addEventListener("click", function() {
@@ -428,12 +377,9 @@ window.addEventListener("load", function(){
         for (let i = 0 ; i < teclas.length ; i++)
             teclas[i].style.backgroundColor = "";
         stopConfetti(); // Parar conffeti
-        //botonReintentar.style.display = "none"; // Ocultamos el botón de reintentar
-        //document.getElementById("mensaje").removeChild(document.querySelector("#mensaje > h3")); // Eliminamos el mensaje
-
         num = 1; // Ponemos la fila de la palabra a uno de nuevo (ya que reiniciamos el juego)
 
-        // Mostramos el texto y los botones de dificultad ¡
+        // Mostramos el texto y los botones de dificultad
         document.getElementById("dificultad").style.display = "";
 
         // Eliminamos las casillas de las palabras
@@ -445,9 +391,6 @@ window.addEventListener("load", function(){
             let cas = document.querySelector("#casillas > #fila" + (i+1) );
             divCont.removeChild(cas);
         }
-
-        //botonEstadisticas.style.display = "";
-        //document.querySelector("#titulo > h1").style.marginLeft = "";
     });
 
     // Botón dificultad baja
@@ -465,7 +408,6 @@ window.addEventListener("load", function(){
     });
 
     // Botoón dificultad alta
-    
     let botonAlta = document.getElementById("alta");
     if (!isMobile())
     {
@@ -496,12 +438,6 @@ window.addEventListener("load", function(){
     // Botón para ir a la pantalla de inicio
     let botonInicio =  document.getElementById("inicio");
     botonInicio.addEventListener("click", function() {
-        // reiniciarEst.style.display = "none";
-        // document.getElementById("dificultad").style.display ="";
-        // this.style.display = "none";
-        // botonEstadisticas.style.display = "";
-        // document.getElementById("grafica").style.display = "none";
-        //chart.update(); // Actualizar gráfica
         location.reload(); //Recargar página y que se recargue bien la gráfica
     });
 
@@ -525,53 +461,10 @@ window.addEventListener("load", function(){
         document.getElementById("harryPotter").style.display = "";
     });
 
-       // Botón Harry Potter
-       let botonHarryPotter = document.getElementById("harryPotter");
-       botonHarryPotter.addEventListener("click", function() {
-           botonInicio.style.display = "";
-           //botonEstadisticas.style.display = "none";
-       });
-   
-
-
-    // // Datos de la gráfica
-    // let datos = {
-    //     labels : ["Baja","Media","Alta"],
-    //     datasets : [
-    //     {
-    //         label: "Partidas ganadas",
-    //         backgroundColor : "rgb(124, 192, 228)", 
-    //         borderColor : "black",
-    //         data : [ganadas4, ganadas5, ganadas7]
-    //     },
-    //     {
-    //         label: "Partidas perdidas",
-    //         backgroundColor : "rgb(245, 128, 128)", 
-    //         borderColor : "black",
-    //         data : [perdidas4, perdidas5, perdidas7]
-    //     }]
-    // };
-
-    // // Configuración de la gráfica 
-    // let config = {
-    //     type: 'bar',
-    //     data: datos,
-    //     options: {}
-    // };
-    
-    // const chart= new Chart(document.getElementById("grafico"), config); // Añadir la gráfica 
-
-
-
-
-
-    const open = document.getElementById('open');
-    const modal_container = document.getElementById('modal_container');
-    const close = document.getElementById('close');
-
-
-
-    // close.addEventListener('click', () => {
-    // modal_container.classList.remove('show');
-    // });
+    // Botón Harry Potter
+    let botonHarryPotter = document.getElementById("harryPotter");
+    botonHarryPotter.addEventListener("click", function() {
+        botonInicio.style.display = "";
+        //botonEstadisticas.style.display = "none";
+    });
 });
