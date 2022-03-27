@@ -78,15 +78,6 @@ window.addEventListener("load", function(){
     teclas1(); // Llamamos a la función de las teclas en pantalla
 
 
-
-
-    function abrir(){
-        document.getElementById("vent").style.display="block";
-    }
-
-    
-
-
     // Función de las teclas del teclado en pantalla
     function teclasTeclado(valor){
         console.log(valor);
@@ -139,7 +130,6 @@ window.addEventListener("load", function(){
             }
             else
             {
-
                 palabra = [];
                 cont = 0;
                 for (let i = 0 ; i < palabra_azar.length ; i++){
