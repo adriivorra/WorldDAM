@@ -31,12 +31,15 @@ body
     gap: 1.4em .45em;
     justify-content: center;
     margin-left: 15px;
+    margin-top: -20px;
 }
 
 #casillas{
-
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
     margin-bottom: 1em;
-
 }
 
 .tecla{
@@ -205,6 +208,8 @@ input.casilla
     font-size: 20px;
 }
 
+
+
 .botones{
     border-style: none;
     background-color: rgb(169, 215, 199);
@@ -243,23 +248,60 @@ input.casilla
     75% {transform: translateX(4px);}
 }
 
+
+
+/* .tecla{
+    padding: 7px;
+    margin: 2px;
+} */
+
+
 @media(orientation: portrait){
-    .casilla {
-        width: 50px;
-        height: 50px;
-        border: 2px solid#3a3a3c;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 2px;
-        font-size: 2em;
-        border-radius: 7px;
+
+
+.casilla {
+    width: 50px;
+    height: 50px;
+    border: 2px solid#3a3a3c;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    font-size: 2em;
+    border-radius: 7px;
+}
+
+
+
+    /* #dificultad, #casillas, #formualario, #inputs{
+        transform: scale(1.5);
     }
+
+    #mensaje{
+        margin-bottom: 100px;
+        font-size: 30px;
+    }
+
+    #casillas{
+        margin-top: 60px;
+    }
+
+    #inputs{
+        margin-top: 110px;
+    }
+
+    #enviar{
+        margin-top: 40px;
+        font-size: 30px;
+    } */
 
     #reintentar, #texto, #titulo, #baja, #media, #alta{
         font-size: 22px;
     }
+    /* #titulo{
+        margin: 30px;
+    } */
 
     #titulo{
         margin-left: -20px;
@@ -270,6 +312,9 @@ input.casilla
         margin-top: 10px;
         margin-left: 120px;
     }
+
+    
+
 }
 
 
