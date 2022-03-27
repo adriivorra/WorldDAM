@@ -28,7 +28,7 @@ body
     display: grid;
     grid-template-columns: repeat(21, minmax(auto, 1.25em));
     grid-auto-rows: 3em;
-    gap: 1.4em .45em;
+    gap: .45em;
     justify-content: center;
     margin-left: 15px;
     margin-top: -20px;
@@ -36,7 +36,7 @@ body
 
 #casillas{
     
-    gap: 1.4em .45em;
+    gap: .45em;
     justify-content: center;
 }
 
@@ -44,7 +44,7 @@ body
     font-size: inherit;
     grid-column: span 2;
     border: none;
-    padding: 2em 1.6em;
+    padding: .45em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -310,6 +310,38 @@ input.casilla
         margin: auto;
         overflow-y: center;
         overflow-x: hidden;
+    }
+
+    #teclado{
+        display: grid;
+        grid-template-columns: repeat(21, minmax(auto, 1.25em));
+        grid-auto-rows: 3em;
+        gap: 2.4em .45em;
+        justify-content: center;
+        margin-left: 15px;
+        margin-top: -20px;
+    }
+    
+    .tecla{
+        font-size: inherit;
+        grid-column: span 2;
+        border: none;
+        padding: 2.5em 1.65em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(213, 6%, 63%);
+        color: white;
+        fill: white;
+        text-transform: uppercase;
+        border-radius: .25em;
+        cursor: pointer;
+        user-select: none;
+    
+    }
+    
+    .teclaLarga{
+        grid-column: span 3;
     }
 
 
