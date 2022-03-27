@@ -27,20 +27,21 @@ window.addEventListener("load", function(){
     //puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
 
     // Ocultar
-    let reiniciarEst = document.getElementById("reiniciarEstadisticas");
-    reiniciarEst.style.display = "none"; // ocultar el botón de reiniciar estadísticas (solo aparece en la sección estadísticas)
+    //let reiniciarEst = document.getElementById("reiniciarEstadisticas");
+    //reiniciarEst.style.display = "none"; // ocultar el botón de reiniciar estadísticas (solo aparece en la sección estadísticas)
     document.getElementById("teclado").style.display = "none"; // Ocular teclado al inicio
     document.getElementById("inicio").style.display = "none"; //ocultamos el botón de ir a inicio de la sección de estadísticas
+    document.getElementById("harryPotter").style.display = "none";
 
     // Crear botón para volver a jugar
-    let sectionContenedor = document.getElementById("contenedor");
-    let botonReintentar = document.createElement("button");
+    // let sectionContenedor = document.getElementById("contenedor");
+    // let botonReintentar = document.createElement("button");
 
-    // Atributos del botón de reintentar
-    botonReintentar.setAttribute("id","reintentar");
-    botonReintentar.style.display = "none";
+    // // Atributos del botón de reintentar
+    // botonReintentar.setAttribute("id","reintentar");
+    // botonReintentar.style.display = "none";
 
-    sectionContenedor.appendChild(botonReintentar); // Insertamos el botón
+    // sectionContenedor.appendChild(botonReintentar); // Insertamos el botón
 
     // Función para generar la rejilla con las casillas de cada palabra
     function generarRejilla(){
@@ -78,18 +79,32 @@ window.addEventListener("load", function(){
     teclas1(); // Llamamos a la función de las teclas en pantalla
 
 
+
+
+    function isMobile(){
+        return (
+            (navigator.userAgent.match(/Android/i)) ||
+            (navigator.userAgent.match(/webOS/i)) ||
+            (navigator.userAgent.match(/iPhone/i)) ||
+            (navigator.userAgent.match(/iPod/i)) ||
+            (navigator.userAgent.match(/iPad/i)) ||
+            (navigator.userAgent.match(/BlackBerry/i))
+        );
+    }
+
+    
+
+
     // Función de las teclas del teclado en pantalla
     function teclasTeclado(valor){
         console.log(valor);
-        if ( valor != "" && /^[a-zA-ZñÑ]$/.test(valor) != false && palabra.length != palabra_azar.length && valor != "Delete"){
+        if ( valor != "" && /^[a-zA-ZñÑ]$/.test(valor) != false && palabra.length != palabra_azar.length && valor != "Delete" && valor != "Enter"){
             res = true;
             palabra.push(valor.toUpperCase());
             document.getElementById("casilla" + (cont+1) + "_" + num).innerText = valor.toUpperCase();
             document.getElementById("casilla" + (cont+1) + "_" + num).style.border = "3px solid black";
             cont++;
         }
-        else
-            res = false;
 
         if (valor == "Delete")
         {
@@ -132,16 +147,17 @@ window.addEventListener("load", function(){
             {
                 palabra = [];
                 cont = 0;
+                
                 for (let i = 0 ; i < palabra_azar.length ; i++){
                     document.getElementById("casilla" + (i+1) + "_" + num).innerText = "";
                     document.getElementById("casilla" + (i+1) + "_" + num).classList.add("noEncontrada");
                 }
-                document.getElementById("encontrada").innerText="Palabra no encontrada!"; //Mensaje de error
-                document.getElementById("encontrada").setAttribute("class","noEncontrada"); // Efecto temblor del texto
-
-                setTimeout(function () { 
-                    document.getElementById("encontrada").innerText="";
-                    document.getElementById("encontrada").classList.remove("noEncontrada"); // Quitar efecto temblor al texto
+                document.getElementById("reintentar").style.display = "none";
+                document.getElementById("mensaje").innerHTML="<strong>Palabra no encontrada!</strong>"; //Mensaje de error
+                modal_container.classList.add('show'); 
+                setTimeout(function () {
+                    modal_container.classList.remove('show'); 
+                    document.getElementById("reintentar").style.display = "none";
                     for (let i = 0 ; i < palabra_azar.length ; i++){
                         document.getElementById("casilla" + (i+1) + "_" + num).classList.remove("noEncontrada");
                         document.getElementById("casilla" + (i+1) + "_" + num).style.border = "2px solid #3a3a3c";
@@ -238,10 +254,13 @@ window.addEventListener("load", function(){
     function ganar()
     {
         document.getElementById("teclado").style.display = "none";
+
+
+
         num = 1; // Ponemos num a 1 por si queremos volver a jugar que empiece desde la linea uno
         mensajeFin("Has ganado!"); // Función para el mensaje de fin
-        botonReintentar.innerText = "Volver a jugar"; // Texto que aparece en el botón de reintentar
-        botonReintentar.style.display = ""; //Mostrar el botón de reintentar
+        //botonReintentar.innerText = "Volver a jugar"; // Texto que aparece en el botón de reintentar
+        //botonReintentar.style.display = ""; //Mostrar el botón de reintentar
         startConfetti(); // Empieza el confetti
         
         // Puntuaciones
@@ -294,8 +313,8 @@ window.addEventListener("load", function(){
             perdidas4++;
         //ocultarImputs(); // Ocultar imputs
         mensajeFin("Has perdido"); // Mensaje de fin
-        botonReintentar.innerText = "Reintentar"; // Texto que aparece en el botón de reintentar
-        botonReintentar.style.display = ""; // Mostrar el botón de reintentar
+        //botonReintentar.innerText = "Reintentar"; // Texto que aparece en el botón de reintentar
+        //botonReintentar.style.display = ""; // Mostrar el botón de reintentar
         //actualizarGrafica(false); // Actualizamos la gráfica con las partidas perdidas
     }
 
@@ -335,20 +354,24 @@ window.addEventListener("load", function(){
 
     // Mensaje de fin personalizado
     function mensajeFin(mensaje){
-        let divMensaje = document.getElementById("mensaje");
-        let parrafo = document.createElement("h3");
-        if (mensaje == "Has perdido")
-            parrafo.innerHTML = mensaje + ". La palabra secreta es '" + palabra_azar + "'";
-        else
-            parrafo.innerHTML = mensaje;
-
-        divMensaje.appendChild(parrafo);
-        document.getElementById("reintentar").focus();
+        let msj = document.getElementById("mensaje");
+        msj.style.fontSize = "20px";
+        
+        if (mensaje == "Has perdido"){
+            msj.innerText = mensaje + ". La palabra secreta es '" + palabra_azar + "'";
+            document.getElementById("reintentar").innerText = "Reintentar";
+        }else{
+            msj.innerText = mensaje;
+            document.getElementById("reintentar").innerText = "Volver a jugar";
+        }
+        modal_container.classList.add('show');  
     }
 
     // Función que llama a otras funciones
     function llamarFuncionesBotones(array)
     {
+        botonInicio.style.display = "";
+        //botonEstadisticas.style.display = "none";
         //puntuacion.style.display = "";
         document.getElementById("dificultad").style.display = "none";
         let numero = Math.floor(Math.random() * array.length);
@@ -356,8 +379,8 @@ window.addEventListener("load", function(){
         console.log(palabra_azar);
         generarRejilla();
         //document.getElementById("grafica").style.display = "none";
-        botonEstadisticas.style.display = "none";
-        document.querySelector("#titulo > h1").style.marginLeft = "-200px";
+        //botonEstadisticas.style.display = "none";
+        //document.querySelector("#titulo > h1").style.marginLeft = "-200px";
         return palabra_azar;
     }
 
@@ -394,19 +417,23 @@ window.addEventListener("load", function(){
         enviarPalabra();
     });
 
+
+
+    let botonReintentar = document.getElementById("reintentar");
     // Botón de jugar de nuevo o reintentar
     botonReintentar.addEventListener("click", function() {
+        modal_container.classList.remove('show');
         document.getElementById("teclado").style.display = "none"; // Ocultar el teclado
         // Quitar colores de las teclas
         for (let i = 0 ; i < teclas.length ; i++)
             teclas[i].style.backgroundColor = "";
-        stopConfetti();
-        botonReintentar.style.display = "none"; // Ocultamos el botón de reintentar
-        document.getElementById("mensaje").removeChild(document.querySelector("#mensaje > h3")); // Eliminamos el mensaje
+        stopConfetti(); // Parar conffeti
+        //botonReintentar.style.display = "none"; // Ocultamos el botón de reintentar
+        //document.getElementById("mensaje").removeChild(document.querySelector("#mensaje > h3")); // Eliminamos el mensaje
 
         num = 1; // Ponemos la fila de la palabra a uno de nuevo (ya que reiniciamos el juego)
 
-        // Ocultamos el texto y los botones de dificultad ¡
+        // Mostramos el texto y los botones de dificultad ¡
         document.getElementById("dificultad").style.display = "";
 
         // Eliminamos las casillas de las palabras
@@ -419,8 +446,8 @@ window.addEventListener("load", function(){
             divCont.removeChild(cas);
         }
 
-        botonEstadisticas.style.display = "";
-        document.querySelector("#titulo > h1").style.marginLeft = "";
+        //botonEstadisticas.style.display = "";
+        //document.querySelector("#titulo > h1").style.marginLeft = "";
     });
 
     // Botón dificultad baja
@@ -438,39 +465,73 @@ window.addEventListener("load", function(){
     });
 
     // Botoón dificultad alta
+    
     let botonAlta = document.getElementById("alta");
-    botonAlta.addEventListener("click", function() {
-        document.getElementById("teclado").style.display = "";
-        llamarFuncionesBotones(palabras7letras);
-    });
+    if (!isMobile())
+    {
+        botonAlta.addEventListener("click", function() {
+            document.getElementById("teclado").style.display = "";
+            llamarFuncionesBotones(palabras7letras);
+        });
+    }
+
+
+    if (isMobile())
+    {
+        botonAlta.innerHTML = "Alta <br>(Solo en ordenador)";
+        botonAlta.style.fontSize = "17px";
+        botonAlta.style.backgroundColor = "rgb(168, 179, 175)";
+    }
 
     // Botón para ver las estadísticas de partidas ganadas 
-    let botonEstadisticas = document.getElementById("estadisticas");
-    botonEstadisticas.addEventListener("click", function() {
-        reiniciarEst.style.display = "";
-        document.getElementById("dificultad").style.display ="none";
-        document.getElementById("grafica").style.display = "";
-        this.style.display = "none";
-        botonInicio.style.display = "";
-    });
+    // let botonEstadisticas = document.getElementById("estadisticas");
+    // botonEstadisticas.addEventListener("click", function() {
+    //     reiniciarEst.style.display = "";
+    //     document.getElementById("dificultad").style.display ="none";
+    //     document.getElementById("grafica").style.display = "";
+    //     this.style.display = "none";
+    //     botonInicio.style.display = "";
+    // });
 
     // Botón para ir a la pantalla de inicio
     let botonInicio =  document.getElementById("inicio");
     botonInicio.addEventListener("click", function() {
-        reiniciarEst.style.display = "none";
-        document.getElementById("dificultad").style.display ="";
-        this.style.display = "none";
-        botonEstadisticas.style.display = "";
-        document.getElementById("grafica").style.display = "none";
-        //chart.update(); // Actualizar gráfica
-    });
-
-  
-    reiniciarEst.addEventListener("click", function() {
-        localStorage.clear(); //Borrar almacenamiento local
+        // reiniciarEst.style.display = "none";
+        // document.getElementById("dificultad").style.display ="";
+        // this.style.display = "none";
+        // botonEstadisticas.style.display = "";
+        // document.getElementById("grafica").style.display = "none";
         //chart.update(); // Actualizar gráfica
         location.reload(); //Recargar página y que se recargue bien la gráfica
     });
+
+  
+    // reiniciarEst.addEventListener("click", function() {
+    //     localStorage.clear(); //Borrar almacenamiento local
+    //     //chart.update(); // Actualizar gráfica
+    //     location.reload(); //Recargar página y que se recargue bien la gráfica
+    // });
+
+
+
+    // Botón tematicas
+    let tematicas = document.getElementById("tematicas");
+    tematicas.addEventListener("click", function() {
+        botonBaja.style.display = "none";
+        botonMedia.style.display = "none";
+        botonAlta.style.display = "none";
+        this.style.display = "none";
+        document.getElementById("texto").style.display = "none";
+        document.getElementById("harryPotter").style.display = "";
+    });
+
+       // Botón Harry Potter
+       let botonHarryPotter = document.getElementById("harryPotter");
+       botonHarryPotter.addEventListener("click", function() {
+           botonInicio.style.display = "";
+           //botonEstadisticas.style.display = "none";
+       });
+   
 
 
     // // Datos de la gráfica
@@ -499,4 +560,18 @@ window.addEventListener("load", function(){
     // };
     
     // const chart= new Chart(document.getElementById("grafico"), config); // Añadir la gráfica 
+
+
+
+
+
+    const open = document.getElementById('open');
+    const modal_container = document.getElementById('modal_container');
+    const close = document.getElementById('close');
+
+
+
+    // close.addEventListener('click', () => {
+    // modal_container.classList.remove('show');
+    // });
 });

@@ -2,7 +2,6 @@ body
 {
     color: #000;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', Arial, sans-serif;   
-
     overflow-x: hidden;
     margin: 0;
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
@@ -40,6 +39,14 @@ body
     justify-content: center;
 }
 
+#dificultad{
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: auto;
+}
+
+
+
 .tecla{
     font-size: inherit;
     grid-column: span 2;
@@ -71,61 +78,12 @@ body
     100% {transform: scale(1.00)};
 }
 
-
-/* #teclado {
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
-  }
-
-  .tecla{
-    width: auto;
-    height: auto;
-    padding: 1.2vh;
-
-    cursor: pointer;
-    text-transform: uppercase;
-    border-radius: 5px;
-  } */
-/* 
-   #teclado div {
-    display: flex;
-} */
-
-/* #segunda_linea {
-    margin: 0.4rem 0;
-} */
-
-/* .tecla {
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 0.6rem 0.6rem;
-    margin: 0px 2px;
-    cursor: pointer;
-    text-transform: uppercase;
-}  */
-
 #titulo
 {
     text-align: center;
 }
 
-#head{
-    display: grid;
-    grid-template-rows: 1;
-    grid-template-columns:  auto auto auto;
 
-}
-
-#titulo{
-    grid-column: 1;
-    position: relative;
-    left: 100px;
-}
 
 #estadisticas{
     grid-column: 2;
@@ -148,16 +106,27 @@ body
     height: 40px;
     width: 40px;
 }
+#head{
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns:  100% 5%;
+
+}
+
+#titulo{
+    position: relative;
+    /* left: 100px; */ 
+}
 
 #inicio{
-    grid-column: 3;
     background-color: transparent;
-    margin-left: 150px;
+    /* margin-left: 150px; */
     border-style: none;
     transition: 0.2s;
     border-radius: 8px;
     height: 60px;
     width: 60px;
+    margin-top: 15px;
 }
 
 #inicio:hover{
@@ -233,18 +202,14 @@ input.casilla
     transition: 0.2s;
 }
 
-
 #reintentar{
     padding: 10px;
-
     background-color: black;
     color: white;
     border-radius: 5px;
     border-style: none;
     font-size: 20px;
 }
-
-
 
 .botones{
     border-style: none;
@@ -269,6 +234,10 @@ input.casilla
 
 }
 
+#harryPotter{
+    padding: 10px;
+}
+
 .añadirPalabra{
     animation: rotar 1500ms;
 }
@@ -277,20 +246,11 @@ input.casilla
     55% {transform: rotateY(180deg);}
 }
 
-
 @keyframes shake {
     25% {transform: translateX(4px);}
     50% {transform: translateX(-4px);}
     75% {transform: translateX(4px);}
 }
-
-
-
-/* .tecla{
-    padding: 7px;
-    margin: 2px;
-} */
-
 
 @media(orientation: portrait){
     #contenedor {
@@ -344,61 +304,32 @@ input.casilla
         grid-column: span 3;
     }
 
-
-
-.casilla {
-    width: 50px;
-    height: 50px;
-    border: 2px solid#3a3a3c;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2px;
-    font-size: 2em;
-    border-radius: 7px;
-}
-
-
-
-    /* #dificultad, #casillas, #formualario, #inputs{
-        transform: scale(1.5);
+    .casilla {
+        width: 50px;
+        height: 50px;
+        border: 2px solid#3a3a3c;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2px;
+        font-size: 2em;
+        border-radius: 7px;
     }
-
-    #mensaje{
-        margin-bottom: 100px;
-        font-size: 30px;
-    }
-
-    #casillas{
-        margin-top: 60px;
-    }
-
-    #inputs{
-        margin-top: 110px;
-    }
-
-    #enviar{
-        margin-top: 40px;
-        font-size: 30px;
-    } */
-
     #reintentar, #texto, #titulo, #baja, #media, #alta{
         font-size: 22px;
     }
-    /* #titulo{
-        margin: 30px;
-    } */
+  
 
     #titulo{
-        margin-left: -20px;
         margin-bottom: 20px;
+
         position: relative;
     }
     
     #estadisticas, #inicio{
         margin-top: 10px;
-        margin-left: 120px;
+        /* margin-left: 120px; */
     }
 
     
@@ -406,3 +337,42 @@ input.casilla
 }
 
 
+
+.modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;  
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+  }
+  
+  .show {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  
+  .modal {
+    background-color: #fff;
+    width: 150px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .modal h1 {
+    margin: 0;
+  }
+  
+  .modal p {
+    opacity: 0.7;
+    font-size: 14px;
+  }

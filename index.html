@@ -21,17 +21,23 @@
             <div id="titulo">
                 <h1>WordlePlay</h1>
             </div>
-            <button id="estadisticas"><img src="img/grafica.png" id="imagen_grafica"></button> 
+            <!-- <button id="estadisticas"><img src="img/grafica.png" id="imagen_grafica"></button>  -->
             <button id="inicio"><img src="img/inicio.png" id="imagen_inicio"></button> 
         </div>
-        <div>
+        <!-- <div>
             <button id="reiniciarEstadisticas">Reiniciar estadísticas</button> 
-        </div>
+        </div> -->
         <div id="dificultad">
             <h3 id="texto">Nivel de dificultad: </h3>
-            <p id="baja" class="botones">Baja</p>
+            <!-- <p id="baja" class="botones">Baja</p>
             <p id="media" class="botones">Media</p>
-            <p id="alta" class="botones">Alta</p>
+            <p id="alta" class="botones">Alta</p> -->
+            <button id="baja" class="botones">Baja</button>
+            <button id="media" class="botones">Media</button>
+            <button id="alta" class="botones">Alta</button>
+            <br>
+            <button id="tematicas" class="botones">Temáticas</button>
+            <button id="harryPotter" class="botones">Harry Potter(Proximamente)</button>
         </div>
         <div id="casillas"></div>
         <div id="teclado">
@@ -67,9 +73,26 @@
             <button class="tecla" value="M" id="M">m</button>
             <button id="teclaEnviar" class="teclaLarga tecla"  value="Enter">Enter</button>
         </div>
-        <div id="mensaje"></div>
-        <p id="encontrada"></p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- <div id="mensaje"></div>
+        <p id="encontrada"></p> -->
         <!-- <p id="puntuacion"><strong>Puntuación:</strong> 0 puntos</p> -->
     </section>
+    <div id="modal_container" class="modal-container">
+        <div class="modal">
+          <p id="mensaje"></p>
+          <button id="reintentar"></button>
+        </div>
+      </div>
 </body>
 </html>
