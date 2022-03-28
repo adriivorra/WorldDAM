@@ -473,5 +473,4 @@ window.addEventListener("load", function(){
         //botonEstadisticas.style.display = "none";
     });
 
-    document.mobile.zoom.disable();
 });
