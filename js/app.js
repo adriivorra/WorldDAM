@@ -94,7 +94,8 @@ window.addEventListener("load", function(){
             cont++;
         }
 
-        if (valor == "Delete")
+        // Borrar letras de la palabra escrita
+        if (valor == "Delete"  &&  document.getElementById("casilla1" + "_" + num).innerText != "")
         {
             palabra.splice(palabra.length-1);
             document.getElementById("casilla" + (cont) + "_" + num).innerText = "";
@@ -149,7 +150,7 @@ window.addEventListener("load", function(){
                     document.getElementById("reintentar").style.display = "none";
                     for (let i = 0 ; i < palabra_azar.length ; i++){
                         document.getElementById("casilla" + (i+1) + "_" + num).classList.remove("noEncontrada");
-                        document.getElementById("casilla" + (i+1) + "_" + num).style.border = "2px solid #3a3a3c";
+                        document.getElementById("casilla" + (i+1) + "_" + num).style.border = "2px solid #9a9aa0";
                     }
                 }, 1500) // Tiempo de retardo
             }
