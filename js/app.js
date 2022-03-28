@@ -245,39 +245,39 @@ window.addEventListener("load", function(){
         mensajeFin("Has ganado!"); // Función para el mensaje de fin
         startConfetti(); // Empieza el confetti
         
-        // Puntuaciones
-        let punt = 0;
+    //     // Puntuaciones
+    //     let punt = 0;
 
-        // Incrementar puntos dependiendo de la dificultad del nivel
-        if (palabra_azar.length == 7)
-        {
-            punt = 40;
-            ganadas7++;
-        }
-        else if (palabra_azar.length == 5)
-        {
-            punt = 30;
-            ganadas5++;
-        }
-        else if (palabra_azar.length == 4)
-        {
-            punt = 20;
-            ganadas4++;
-        }
+    //     // Incrementar puntos dependiendo de la dificultad del nivel
+    //     if (palabra_azar.length == 7)
+    //     {
+    //         punt = 40;
+    //         ganadas7++;
+    //     }
+    //     else if (palabra_azar.length == 5)
+    //     {
+    //         punt = 30;
+    //         ganadas5++;
+    //     }
+    //     else if (palabra_azar.length == 4)
+    //     {
+    //         punt = 20;
+    //         ganadas4++;
+    //     }
 
-        if (num == 1 || num == 2)
-            puntos += punt;
-        else if (num == 3 || num == 4)
-            puntos += punt - 5;
-        else if (num == 5)
-            puntos += punt - 10;
-        else if (num == 6)
-            puntos += punt - 15;
-        else if (num == 7 || num == 8)
-            puntos = 0;
+    //     if (num == 1 || num == 2)
+    //         puntos += punt;
+    //     else if (num == 3 || num == 4)
+    //         puntos += punt - 5;
+    //     else if (num == 5)
+    //         puntos += punt - 10;
+    //     else if (num == 6)
+    //         puntos += punt - 15;
+    //     else if (num == 7 || num == 8)
+    //         puntos = 0;
 
-        //puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
-        localStorage.setItem('puntos', puntos);
+    //     //puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
+    //     localStorage.setItem('puntos', puntos);
     }
 
     // Funcion perder 
@@ -313,6 +313,7 @@ window.addEventListener("load", function(){
         let msj = document.getElementById("mensaje");
         msj.style.fontSize = "20px";
         
+        document.getElementsByClassName("modal")[0].style.height = "";
         if (mensaje == "Has perdido"){
             msj.innerText = mensaje + ". La palabra secreta es '" + palabra_azar + "'";
             document.getElementById("reintentar").innerText = "Reintentar";
