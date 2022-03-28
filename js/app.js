@@ -472,4 +472,6 @@ window.addEventListener("load", function(){
         botonInicio.style.display = "";
         //botonEstadisticas.style.display = "none";
     });
+
+    document.mobile.zoom.disable();
 });
