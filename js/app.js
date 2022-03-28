@@ -25,6 +25,7 @@ window.addEventListener("load", function(){
 
 
     const modal_container = document.getElementById('modal_container');
+    const instrucciones = document.getElementById('comoJugar');
    //let puntuacion = document.getElementById("puntuacion");
     //puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
 
@@ -432,14 +433,25 @@ window.addEventListener("load", function(){
     }
 
     // Botón para ver las estadísticas de partidas ganadas 
-    // let botonEstadisticas = document.getElementById("estadisticas");
-    // botonEstadisticas.addEventListener("click", function() {
-    //     reiniciarEst.style.display = "";
-    //     document.getElementById("dificultad").style.display ="none";
-    //     document.getElementById("grafica").style.display = "";
-    //     this.style.display = "none";
-    //     botonInicio.style.display = "";
-    // });
+    let botonEstadisticas = document.getElementById("estadisticas");
+    botonEstadisticas.addEventListener("click", function() {
+        // reiniciarEst.style.display = "";
+        // document.getElementById("dificultad").style.display ="none";
+        // document.getElementById("grafica").style.display = "";
+        // this.style.display = "none";
+        // botonInicio.style.display = "";
+    });
+
+
+    let botonInformacion = document.getElementById("informacion");
+    botonInformacion.addEventListener("click", function() {
+        comoJugar.classList.add('show'); 
+    });
+
+
+    document.getElementById("salir").addEventListener("click", function() {
+        comoJugar.classList.remove('show'); 
+    });
 
     //Botón para ir a la pantalla de inicio
     let botonInicio =  document.getElementById("inicio");
@@ -462,9 +474,12 @@ window.addEventListener("load", function(){
         botonBaja.style.display = "none";
         botonMedia.style.display = "none";
         botonAlta.style.display = "none";
+        document.getElementById("estadisticas").style.display = "none";
+        document.getElementById("informacion").style.display = "none";
         this.style.display = "none";
         document.getElementById("texto").style.display = "none";
         document.getElementById("harryPotter").style.display = "";
+        botonInicio.style.display = "";
     });
 
     // Botón Harry Potter

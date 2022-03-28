@@ -22,6 +22,18 @@ body
 
 }
 
+#salir{
+    border-style: none;
+    background-color: transparent;
+    font-size: 20px;
+}
+
+#divSalir{
+    text-align: right;
+    margin-right: -40px;
+    margin-top: -20px;
+}
+
 #teclado{
     display: grid;
     grid-template-columns: repeat(21, minmax(auto, 1.25em));
@@ -40,7 +52,7 @@ body
 
 #dificultad{
     display: grid;
-    grid-template-columns: 1;
+    grid-template-columns: auto;
     grid-template-rows: auto;
 }
 
@@ -79,26 +91,67 @@ body
 
 #titulo
 {
+    width: 12em;
+    margin-top: 1em;
+
+}
+
+#divtitulo{
     text-align: center;
+}
+
+#divinicio{
+    margin-top: .7em;
 }
 
 
 
 #estadisticas{
-    grid-column: 2;
-    margin-left: 150px;
-    background-color: transparent;
+    background-color: rgb(198, 238, 210);
+    border-radius: 2px;
     border-style: none;
-    transition: 0.2s;
-    border-radius: 8px;
     height: 60px;
     width: 60px;
+    margin-top: 20px;
 }
 
-#estadisticas:hover{
-    background-color: rgb(204, 204, 204);
-    transition: 0.2s;
+
+
+#divContenedor{
+    grid-column:1;
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns:auto;
 }
+
+
+#divInformacion{
+    text-align: center;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+#divEstadisticas{
+    grid-column:2;
+    text-align: center;
+    grid-row: 1;
+}
+
+
+
+#informacion{
+    background-color: rgb(198, 238, 210);
+    border-radius: 2px;
+    border-style: none;
+    height: 60px;
+    width: 60px;
+    margin-top: 20px;
+}
+
+
+
+
 
 
 #imagen_grafica{
@@ -108,13 +161,8 @@ body
 #head{
     display: grid;
     grid-template-rows: 1;
-    grid-template-columns:  100% 5%;
+    grid-template-columns:  100% 1%;
 
-}
-
-#titulo{
-    position: relative;
-    /* left: 100px; */ 
 }
 
 #inicio{
@@ -124,7 +172,7 @@ body
     border-radius: 5px;
     height: 50px;
     width: 50px;
-    margin-top: 15px;
+    margin-left: -10px;
 }
 
 #imagen_inicio{
@@ -187,8 +235,7 @@ body
 
 .botones{
     border-style: none;
-    background-color: rgb(169, 215, 199);
-    border-radius: 5px;
+    background-color: rgb(198, 238, 210);
     padding: 10px 0px 10px 0px;
     margin: 8px;
     font-size: 20px;
@@ -203,6 +250,9 @@ body
     transition: 0.2s;
 }
 
+#baja, #media, #alta{
+    grid-column: 1;
+}
 
 .noEncontrada{
     animation: shake 300ms;
@@ -214,11 +264,11 @@ body
 }
 
 .añadirPalabra{
-    animation: rotar 1500ms;
+    animation: rotar 1000ms;
 }
 
 @keyframes rotar {
-    55% {transform: rotateY(180deg);}
+    0% {transform: rotateY(-180deg);}
 }
 
 @keyframes shake {
@@ -243,7 +293,6 @@ body
         right: 0;
         bottom: 0;
         margin: auto;
-        overflow-y: center;
         overflow-x: hidden;
     }
 
@@ -283,6 +332,8 @@ body
     #reintentar, #texto, #titulo, #baja, #media, #alta{
         font-size: 22px;
     }
+
+
   
 
     #titulo{
@@ -291,10 +342,7 @@ body
         position: relative;
     }
     
-    #estadisticas, #inicio{
-        margin-top: 10px;
-        /* margin-left: 120px; */
-    }
+  
 
     
 
@@ -346,6 +394,53 @@ body
 
 
 
+  .modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;  
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+    overflow-y: scroll;
+  }
+  
+  .show {
+    pointer-events: auto;
+    opacity: 1;
+  }
+  
+  .modalJuego {
+    background-color: #fff;
+    width: 200px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .modalJuego h1 {
+    margin: 0;
+  }
+  
+  .modalJuego p {
+    opacity: 0.7;
+    font-size: 14px;
+  }
+
+  #correcta, #regular, #incorrecta{
+      width: 150px;
+      opacity: 1;
+      margin-bottom: 5px;
+  }
+
+
+
 
 
 
@@ -374,6 +469,46 @@ body
         font-size: 2em;
         border-radius: 2px;
     }
+
+    #divSalir{
+        text-align: right;
+        margin-right: -40px;
+        margin-top: 150px;
+    }
+
+
+    #titulo
+    {
+        width: 9em;
+        margin-top: 1em;
+
+    }
+    #divinicio{
+        margin-top: 1.7em;
+    }
+
+    #divInformacion{
+        text-align: center;
+        grid-column: 1;
+    }
+
+
+    #inicio{
+        background-color: transparent;
+        border-style: none;
+        transition: 0.2s;
+        border-radius: 5px;
+        height: 50px;
+        width: 0px;
+        margin-left: 0px;
+    }
+
+
+    #imagen_inicio{
+        height: 30px;
+        width: 30px;
+    }
+
 }
 
   @media (min-width: 350px) {
@@ -392,3 +527,7 @@ body
     }
 
   }
+
+
+
+   

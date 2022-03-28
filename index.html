@@ -18,8 +18,8 @@
     <div id="mensajeFinal"></div>
     <section id="contenedor">
         <div id="head">
-            <h1  id="titulo">WordlePlay</h1>
-            <button id="inicio"><img src="img/icons8-casa-24.png" id="imagen_inicio"></button>
+            <div  id="divtitulo"><img src="img/titulo.gif" id="titulo"></div>
+            <div id="divinicio"><button id="inicio"><img src="img/icons8-casa-24.png" id="imagen_inicio"></button></div>
         </div>
         <!-- <div>
             <button id="reiniciarEstadisticas">Reiniciar estadísticas</button> 
@@ -29,13 +29,23 @@
             <!-- <p id="baja" class="botones">Baja</p>
             <p id="media" class="botones">Media</p>
             <p id="alta" class="botones">Alta</p> -->
-            <button id="baja" class="botones">Baja</button>
+            <!-- <button id="baja" class="botones">Baja</button>
             <button id="media" class="botones">Media</button>
-            <button id="alta" class="botones">Alta</button>
+            <button id="alta" class="botones">Alta</button> -->
+            <button id="baja" class="botones"><span> BAJA</span></button>
+            <button id="media" class="botones"><span>MEDIA</span></button>
+            <button id="alta" class="botones"><span>ALTA</span></button>
             <br>
-            <button id="tematicas" class="botones">Temáticas</button>
-            <button id="harryPotter" class="botones">Harry Potter(Proximamente)</button>
-            <!-- <button id="estadisticas"><img src="img/icons8-estadísticas-48.png" id="imagen_grafica"></button> -->
+            <button id="tematicas" class="botones"><span>TEMÁTICAS</span></button>
+            <div id="divContenedor">
+                <div id="divEstadisticas"><button id="estadisticas"><img src="img/icons8-estadísticas-48.png" id="imagen_grafica"></button></div>
+                <div id="divInformacion"><button id="informacion"><img src="img/informacion.png" id="imagenInformacion"></button></div>
+            </div>
+            <br>
+            <button id="harryPotter" class="botones"><span>Harry Potter(Proximamente...) </span></button>
+            <!-- <button id="tematicas" class="botones">Temáticas</button>
+            <button id="harryPotter" class="botones">Harry Potter(Proximamente)</button> -->
+            
         </div>
         <div id="casillas"></div>
         <div id="teclado">
@@ -86,13 +96,35 @@
           <button id="reintentar"></button>
         </div>
       </div>
-<!-- 
-      <div id="comoJugar">
+
+      <div id="comoJugar" class="modal-container">
         <div class="modalJuego">
-            <button id="reintentar"></button>
+            <div id="divSalir"><button id="salir">X</button></div>
             <br>
-          <p id="mensajeJuego"></p>
+          <p id="mensajeJuego">
+            Adivina la palabra oculta en seis intentos.
+            <br><br>
+            Cada intento debe ser una palabra válida de 5 letras.
+            <br><br>
+            Después de cada intento el color de las letras cambia para mostrar qué tan cerca estás de acertar la palabra.
+            <br><br>
+            <span>Ejemplos</span>
+            <br><br>
+            <img src="img/correcta.png" id="correcta">
+            <br>
+            La letra <span>R</span> está en la palabra y en la posición correcta.
+            <br><br>
+            <img src="img/regular.png" id="regular">
+            <br>
+            La letra <span>C</span> está en la palabra pero en la posición incorrecta.
+            <br><br>
+            <img src="img/incorrecta.png" id="incorrecta">
+            <br>
+            La letra <span>O</span> no está en la palabra.
+            <br><br>
+            Puede haber letras repetidas. Las pistas son independientes para cada letra y tienen prioridad.
+          </p>
         </div>
-      </div> -->
+      </div>
 </body>
 </html>
