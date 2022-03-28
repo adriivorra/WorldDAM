@@ -119,18 +119,12 @@ body
 
 #inicio{
     background-color: transparent;
-    /* margin-left: 150px; */
     border-style: none;
     transition: 0.2s;
     border-radius: 5px;
     height: 50px;
     width: 50px;
     margin-top: 15px;
-}
-
-#inicio:hover{
-    background-color: rgb(204, 204, 204);
-    transition: 0.2s;
 }
 
 #imagen_inicio{
@@ -200,6 +194,7 @@ body
     font-size: 20px;
     transition: 0.2s;
     text-align: center;
+    color: black;
 }
 
 .botones:hover{
@@ -348,18 +343,36 @@ body
   }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @media (max-width: 320px) {
     .casilla {
         width: 40px;
         height: 35px;
-        border: 2px solid#3a3a3c;
+        border: 2px solid#9a9aa0;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 2px;
         font-size: 2em;
-        border-radius: 7px;
+        border-radius: 2px;
     }
 }
 

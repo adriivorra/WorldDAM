@@ -32,7 +32,7 @@ window.addEventListener("load", function(){
     //let reiniciarEst = document.getElementById("reiniciarEstadisticas");
     //reiniciarEst.style.display = "none"; // ocultar el botón de reiniciar estadísticas (solo aparece en la sección estadísticas)
     document.getElementById("teclado").style.display = "none"; // Ocular teclado al inicio
-    // document.getElementById("inicio").style.display = "none"; //ocultamos el botón de ir a inicio de la sección de estadísticas
+    document.getElementById("inicio").style.display = "none"; //ocultamos el botón de ir a inicio de la sección de estadísticas
     document.getElementById("harryPotter").style.display = "none";
 
     // Función para generar la rejilla con las casillas de cada palabra
@@ -328,7 +328,7 @@ window.addEventListener("load", function(){
     // Función que llama a otras funciones
     function llamarFuncionesBotones(array)
     {
-        // botonInicio.style.display = "";
+        botonInicio.style.display = "";
         //botonEstadisticas.style.display = "none";
         //puntuacion.style.display = "";
         document.getElementById("dificultad").style.display = "none";
@@ -440,11 +440,11 @@ window.addEventListener("load", function(){
     //     botonInicio.style.display = "";
     // });
 
-    // Botón para ir a la pantalla de inicio
-    // let botonInicio =  document.getElementById("inicio");
-    // botonInicio.addEventListener("click", function() {
-    //     location.reload(); //Recargar página y que se recargue bien la gráfica
-    // });
+    //Botón para ir a la pantalla de inicio
+    let botonInicio =  document.getElementById("inicio");
+    botonInicio.addEventListener("click", function() {
+        location.reload(); //Recargar página y que se recargue bien la gráfica
+    });
 
   
     // reiniciarEst.addEventListener("click", function() {
@@ -469,7 +469,7 @@ window.addEventListener("load", function(){
     // Botón Harry Potter
     let botonHarryPotter = document.getElementById("harryPotter");
     botonHarryPotter.addEventListener("click", function() {
-        // botonInicio.style.display = "";
+        botonInicio.style.display = "";
         //botonEstadisticas.style.display = "none";
     });
 });
