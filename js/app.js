@@ -11,27 +11,14 @@ window.addEventListener("load", function(){
     let i = 0; // Es la letra del contador
     let res = false; // Controlamos si se envia la palabra o no
     let palabra_azar; // Declaramos la variable palabra_azar
-    
-    // Los datos guardados en el navegador los ponemos en las variables
-    let puntos = localStorage.getItem('puntos');
-    // Variables de partidas ganadas dependiendo de la dificultad
-    let ganadas4 = localStorage.getItem('ganadas4');
-    let ganadas5 = localStorage.getItem('ganadas5');
-    let ganadas7 = localStorage.getItem('ganadas6');
-    // Variables de partidas perdidad dependiendo de la dificultad
-    let perdidas4 = localStorage.getItem('perdidas4');
-    let perdidas5 = localStorage.getItem('perdidas4');
-    let perdidas7 = localStorage.getItem('perdidas4');
+    let ganadas = localStorage.getItem('ganadas');
+    let perdidas = localStorage.getItem('perdidas');
+    let resGanadas = "Ganadas: " + (parseInt(ganadas)  * 100 / (parseInt(ganadas) + parseInt(perdidas))).toFixed(2) + "%";
+    let resPerdidas = "Perdidas: " + (parseInt(perdidas)  * 100 / (parseInt(ganadas) + parseInt(perdidas))).toFixed(2) + "%";
 
 
     const modal_container = document.getElementById('modal_container');
-    const instrucciones = document.getElementById('comoJugar');
-   //let puntuacion = document.getElementById("puntuacion");
-    //puntuacion.style.display = "none"; // Ocultamos la puntucación al cargar la página
-
-    // Ocultar
-    //let reiniciarEst = document.getElementById("reiniciarEstadisticas");
-    //reiniciarEst.style.display = "none"; // ocultar el botón de reiniciar estadísticas (solo aparece en la sección estadísticas)
+    const banerEstadisticas = document.getElementById('banerEstadisticas');
     document.getElementById("teclado").style.display = "none"; // Ocular teclado al inicio
     document.getElementById("inicio").style.display = "none"; //ocultamos el botón de ir a inicio de la sección de estadísticas
     document.getElementById("harryPotter").style.display = "none";
@@ -111,7 +98,7 @@ window.addEventListener("load", function(){
     // Función para enviar la palabra a las casillas superiores
     function enviarPalabra(){
         if (res && cont == palabra_azar.length && num <= 6)
-        {
+        {   // TIPO DE ARRAY
             let tipoArray;
             if (palabra_azar.length == 4)
                 tipoArray = palabras4letras;
@@ -247,40 +234,12 @@ window.addEventListener("load", function(){
         num = 1; // Ponemos num a 1 por si queremos volver a jugar que empiece desde la linea uno
         mensajeFin("Has ganado!"); // Función para el mensaje de fin
         startConfetti(); // Empieza el confetti
-        
-    //     // Puntuaciones
-    //     let punt = 0;
-
-    //     // Incrementar puntos dependiendo de la dificultad del nivel
-    //     if (palabra_azar.length == 7)
-    //     {
-    //         punt = 40;
-    //         ganadas7++;
-    //     }
-    //     else if (palabra_azar.length == 5)
-    //     {
-    //         punt = 30;
-    //         ganadas5++;
-    //     }
-    //     else if (palabra_azar.length == 4)
-    //     {
-    //         punt = 20;
-    //         ganadas4++;
-    //     }
-
-    //     if (num == 1 || num == 2)
-    //         puntos += punt;
-    //     else if (num == 3 || num == 4)
-    //         puntos += punt - 5;
-    //     else if (num == 5)
-    //         puntos += punt - 10;
-    //     else if (num == 6)
-    //         puntos += punt - 15;
-    //     else if (num == 7 || num == 8)
-    //         puntos = 0;
-
-    //     //puntuacion.innerHTML = '<strong>Puntuación:</strong>' + puntos + ' puntos'; // Mostrar los putnos por pantalla
-    //     localStorage.setItem('puntos', puntos);
+        ganadas++;
+        if (perdidas == null)
+            perdidas = 0;
+        localStorage.setItem('perdidas', perdidas);
+        localStorage.setItem('ganadas', ganadas);
+        console.log(localStorage.getItem('ganadas'));
     }
 
     // Funcion perder 
@@ -288,27 +247,13 @@ window.addEventListener("load", function(){
     {
         document.getElementById("teclado").style.display = "none";
         num = 1;
-        // Contar las partidas perdidad dependiendo de la dificultad
-        if (palabra_azar.length == 7)
-        perdidas7++;
-        else if (palabra_azar.length == 5)
-            perdidas5++;
-        else if (palabra_azar.length == 4)
-            perdidas4++;
         mensajeFin("Has perdido"); // Mensaje de fin
-    }
-
-    // Función para actualizar la gráfica 
-    function actualizarGrafica(ganada){
-
-        //  Guardamos los datos de las partidas ganas y perdidas en el navegador
-        localStorage.setItem('ganadas4', ganadas4);
-        localStorage.setItem('ganadas5', ganadas5);
-        localStorage.setItem('ganadas7', ganadas7);
-
-        localStorage.setItem('perdidas4', perdidas4);
-        localStorage.setItem('perdidas5', perdidas5);
-        localStorage.setItem('perdidas7', perdidas7);
+        perdidas++;
+        if (ganadas == null)
+            ganadas = 0;
+        localStorage.setItem('ganadas', ganadas);
+        localStorage.setItem('perdidas', perdidas);
+        console.log(localStorage.getItem('perdidas'));
     }
 
     // Mensaje de fin personalizado
@@ -375,29 +320,31 @@ window.addEventListener("load", function(){
         enviarPalabra();
     });
 
+     // Botón de jugar de nuevo o reintentar
     let botonReintentar = document.getElementById("reintentar");
-    // Botón de jugar de nuevo o reintentar
     botonReintentar.addEventListener("click", function() {
         modal_container.classList.remove('show');
-        document.getElementById("teclado").style.display = "none"; // Ocultar el teclado
-        // Quitar colores de las teclas
-        for (let i = 0 ; i < teclas.length ; i++)
-            teclas[i].style.backgroundColor = "";
-        stopConfetti(); // Parar conffeti
-        num = 1; // Ponemos la fila de la palabra a uno de nuevo (ya que reiniciamos el juego)
+        location.reload(); //Recargar página
+        // document.getElementById("teclado").style.display = "none"; // Ocultar el teclado
+        // // Quitar colores de las teclas
+        // for (let i = 0 ; i < teclas.length ; i++)
+        //     teclas[i].style.backgroundColor = "";
+        // stopConfetti(); // Parar conffeti
+        // num = 1; // Ponemos la fila de la palabra a uno de nuevo (ya que reiniciamos el juego)
 
-        // Mostramos el texto y los botones de dificultad
-        document.getElementById("dificultad").style.display = "";
+        // // Mostramos el texto y los botones de dificultad
+        // document.getElementById("dificultad").style.display = "";
 
-        // Eliminamos las casillas de las palabras
-        let divCont = document.getElementById("casillas");
-        let cantidadCasiilas = 6;
-        if (palabra_azar.length == 7)
-            cantidadCasiilas = 8;
-        for (let i = 0 ; i < cantidadCasiilas ; i++){
-            let cas = document.querySelector("#casillas > #fila" + (i+1) );
-            divCont.removeChild(cas);
-        }
+        // // Eliminamos las casillas de las palabras
+        // let divCont = document.getElementById("casillas");
+        // let cantidadCasiilas = 6;
+        // if (palabra_azar.length == 7)
+        //     cantidadCasiilas = 8;
+        // for (let i = 0 ; i < cantidadCasiilas ; i++){
+        //     let cas = document.querySelector("#casillas > #fila" + (i+1) );
+        //     divCont.removeChild(cas);
+        // }
+        
     });
 
     // Botón dificultad baja
@@ -424,7 +371,6 @@ window.addEventListener("load", function(){
         });
     }
 
-
     if (isMobile())
     {
         botonAlta.innerHTML = "Alta <br>(Solo en ordenador)";
@@ -432,25 +378,28 @@ window.addEventListener("load", function(){
         botonAlta.style.backgroundColor = "rgb(168, 179, 175)";
     }
 
-    // Botón para ver las estadísticas de partidas ganadas 
-    let botonEstadisticas = document.getElementById("estadisticas");
-    botonEstadisticas.addEventListener("click", function() {
-        // reiniciarEst.style.display = "";
-        // document.getElementById("dificultad").style.display ="none";
-        // document.getElementById("grafica").style.display = "";
-        // this.style.display = "none";
-        // botonInicio.style.display = "";
-    });
-
-
     let botonInformacion = document.getElementById("informacion");
     botonInformacion.addEventListener("click", function() {
         comoJugar.classList.add('show'); 
     });
 
+    let salir = document.getElementsByClassName("salir");
+    for (let i = 0; i < salir.length; i++) {
+        document.getElementsByClassName("salir")[i].addEventListener("click", function() {
+            banerEstadisticas.classList.remove('show'); 
+            comoJugar.classList.remove('show'); 
+    
+        });
+    }
 
-    document.getElementById("salir").addEventListener("click", function() {
-        comoJugar.classList.remove('show'); 
+    let botonEstadisticas = document.getElementById("estadisticas");
+    botonEstadisticas.addEventListener("click", function() {
+
+        if (localStorage.getItem('perdidas') == null || localStorage.getItem('ganadas') == null)
+            document.getElementById("mensajeEstadisticas").innerHTML = "No hay datos";
+        else
+            document.getElementById("mensajeEstadisticas").innerHTML = resGanadas + "<br><br>" + resPerdidas;
+        document.getElementById("banerEstadisticas").classList.add('show'); 
     });
 
     //Botón para ir a la pantalla de inicio
@@ -459,14 +408,11 @@ window.addEventListener("load", function(){
         location.reload(); //Recargar página y que se recargue bien la gráfica
     });
 
-  
-    // reiniciarEst.addEventListener("click", function() {
-    //     localStorage.clear(); //Borrar almacenamiento local
-    //     //chart.update(); // Actualizar gráfica
-    //     location.reload(); //Recargar página y que se recargue bien la gráfica
-    // });
-
-
+    let reiniciarEst = document.getElementById("reiniciarEstadisticas");
+    reiniciarEst.addEventListener("click", function() {
+        localStorage.clear(); //Borrar almacenamiento local
+        location.reload(); //Recargar página
+    });
 
     // Botón tematicas
     let tematicas = document.getElementById("tematicas");
@@ -486,7 +432,5 @@ window.addEventListener("load", function(){
     let botonHarryPotter = document.getElementById("harryPotter");
     botonHarryPotter.addEventListener("click", function() {
         botonInicio.style.display = "";
-        //botonEstadisticas.style.display = "none";
     });
-
 });
