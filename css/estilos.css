@@ -45,7 +45,6 @@ body
 }
 
 #casillas{
-    
     gap: .45em;
     justify-content: center;
 }
@@ -55,8 +54,6 @@ body
     grid-template-columns: auto;
     grid-template-rows: auto;
 }
-
-
 
 .tecla{
     font-size: inherit;
@@ -104,8 +101,6 @@ body
     margin-top: 1em;
 }
 
-
-
 #estadisticas{
     background-color: rgb(198, 238, 210);
     border-radius: 2px;
@@ -115,15 +110,12 @@ body
     margin-top: 20px;
 }
 
-
-
 #divContenedor{
     grid-column:1;
     display: grid;
     grid-template-rows: 1;
     grid-template-columns:auto;
 }
-
 
 #divInformacion{
     text-align: center;
@@ -138,8 +130,6 @@ body
     grid-row: 1;
 }
 
-
-
 #informacion{
     background-color: rgb(198, 238, 210);
     border-radius: 2px;
@@ -150,11 +140,13 @@ body
 }
 
 
+#imagenInformacion{
+    height: 40px;
+    width: 40px;
+    margin-top: 2px;
+}
 
-
-
-
-#imagen_grafica{
+#imagen_estadistica, #imagen_inicio{
     height: 40px;
     width: 40px;
 }
@@ -173,11 +165,6 @@ body
     height: 50px;
     width: 50px;
     margin-left: -10px;
-}
-
-#imagen_inicio{
-    height: 40px;
-    width: 40px;
 }
 
 #mensaje 
@@ -256,7 +243,6 @@ body
 
 .noEncontrada{
     animation: shake 300ms;
-
 }
 
 #harryPotter{
@@ -277,6 +263,105 @@ body
     75% {transform: translateX(4px);}
 }
 
+.modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;  
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+}
+  
+.show {
+pointer-events: auto;
+opacity: 1;
+}
+  
+.modal {
+background-color: #fff;
+width: 150px;
+max-width: 100%;
+padding: 30px 50px;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+text-align: center;
+  }
+  
+.modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;  
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+    overflow-y: scroll;
+}
+
+.modalJuego {
+    background-color: #fff;
+    width: 600px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modalJuego p {
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+#correcta, #regular, #incorrecta{
+    width: 150px;
+    opacity: 1;
+    margin-bottom: 5px;
+}
+
+.modal-container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;  
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+}
+
+.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.modalEstadisticas {
+    background-color: #fff;
+    width: 200px;
+    height: 200px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+
+/* DISEÑO DISPOSITIVOS MOVILES */
 @media(orientation: portrait){
     #contenedor {
         margin-top: -200px;
@@ -328,155 +413,18 @@ body
         grid-column: span 3;
     }
 
-
     #reintentar, #texto, #titulo, #baja, #media, #alta{
         font-size: 22px;
     }
 
-
-  
-
     #titulo{
         margin-bottom: 20px;
-
         position: relative;
     }
-    
-  
-
-    
-
 }
 
 
-
-.modal-container {
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    pointer-events: none;
-    opacity: 0;  
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    transition: opacity 0.3s ease;
-  }
-  
-  .show {
-    pointer-events: auto;
-    opacity: 1;
-  }
-  
-  .modal {
-    background-color: #fff;
-    width: 150px;
-    /* height: 150px; */
-    max-width: 100%;
-    padding: 30px 50px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  
-
-
-
-
-  .modal-container {
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    opacity: 0;  
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    transition: opacity 0.3s ease;
-    overflow-y: scroll;
-  }
-  
-
-  
-  .modalJuego {
-    background-color: #fff;
-    width: 600px;
-    max-width: 100%;
-    padding: 30px 50px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  
-  .modalJuego h1 {
-    margin: 0;
-  }
-  
-  .modalJuego p {
-    opacity: 0.7;
-    font-size: 14px;
-  }
-
-  #correcta, #regular, #incorrecta{
-      width: 150px;
-      opacity: 1;
-      margin-bottom: 5px;
-  }
-
-
-
-
-
-
-
-
-  .modal-container {
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.3);
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    pointer-events: none;
-    opacity: 0;  
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    transition: opacity 0.3s ease;
-  }
-  
-  .show {
-    pointer-events: auto;
-    opacity: 1;
-  }
-  
-  .modalEstadisticas {
-    background-color: #fff;
-    width: 200px;
-    height: 200px;
-    max-width: 100%;
-    padding: 30px 50px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* DISEÑO DISPOSITIVOS MOVILES CON RESOLUCIÓN MUY BAJA */
   @media (max-width: 320px) {
     .casilla {
         width: 40px;
@@ -497,12 +445,10 @@ body
         margin-top: 190px;
     }
 
-
     #titulo
     {
         width: 9em;
         margin-top: 1em;
-
     }
     #divinicio{
         margin-top: 1.7em;
@@ -513,7 +459,6 @@ body
         grid-column: 1;
     }
 
-
     #inicio{
         background-color: transparent;
         border-style: none;
@@ -523,7 +468,6 @@ body
         width: 0px;
         margin-left: 0px;
     }
-
 
     #imagen_inicio{
         height: 30px;
@@ -539,11 +483,9 @@ body
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         text-align: center;
       }
-
 }
 
   @media (min-width: 350px) {
-
     .casilla {
         width: 62px;
         height: 62px;
@@ -556,7 +498,6 @@ body
         font-size: 2em;
         border-radius: 2px;
     }
-
   }
 
 
