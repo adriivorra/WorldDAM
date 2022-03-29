@@ -264,8 +264,10 @@ window.addEventListener("load", function(){
         document.getElementsByClassName("modal")[0].style.height = "";
         if (mensaje == "Has perdido"){
             msj.innerText = mensaje + ". La palabra secreta es '" + palabra_azar + "'";
+            document.getElementById("reintentar").innerText = "Reintentar";
         }else{
             msj.innerText = mensaje;
+            document.getElementById("reintentar").innerText = "Volver a jugar";
         }
         modal_container.classList.add('show');  
     }
